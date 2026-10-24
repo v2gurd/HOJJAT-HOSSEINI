@@ -1,1303 +1,201 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070b19">
-  <meta name="description" content="وب‌سایت رسمی حجت حسینی؛ جدیدترین آهنگ‌ها، آثار موسیقی و اخبار">
-  <meta name="keywords" content="حجت حسینی, آهنگ حجت حسینی, فریاد بی‌صدا">
-  <meta property="og:title" content="حجت حسینی | وب‌سایت رسمی">
-  <meta property="og:description" content="صدایی از جنس احساس">
-  <meta property="og:image" content="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp">
-  <title>حجت حسینی | وب‌سایت رسمی</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #070b19;
-      --panel: rgba(18, 27, 52, .72);
-      --blue: #3985ff;
-      --cyan: #6ee7ff;
-      --white: #f5f8ff;
-      --muted: #a0aecb;
-      --border: rgba(255,255,255,.11);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: "Vazirmatn", Tahoma, sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(ellipse at 75% 25%, rgba(35,94,204,.22), transparent 42%),
-        radial-gradient(ellipse at 12% 80%, rgba(27,130,181,.13), transparent 36%),
-        linear-gradient(145deg, #0a1023, #050711 72%);
-    }
-
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: .6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-
-    .container {
-      width: min(1160px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    header {
-      position: relative;
-      z-index: 10;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      background: rgba(5,8,19,.45);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: -.5px;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border: 1px solid rgba(110,231,255,.45);
-      border-radius: 14px;
-      color: var(--cyan);
-      background: linear-gradient(135deg, rgba(57,133,255,.25), rgba(110,231,255,.05));
-      box-shadow: 0 0 30px rgba(57,133,255,.13);
-      font-size: 22px;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      margin-top: 1px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      color: #c4cee4;
-      font-size: 13px;
-    }
-
-    .nav-links a { transition: color .2s; }
-    .nav-links a:hover { color: var(--cyan); }
-
-    .nav-cta {
-      border: 1px solid rgba(110,231,255,.35);
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-size: 12px;
-      color: var(--cyan);
-      background: rgba(57,133,255,.08);
-      transition: .25s;
-    }
-
-    .nav-cta:hover {
-      background: rgba(57,133,255,.2);
-      transform: translateY(-2px);
-    }
-
-    /* بخش اصلی */
-
-    .hero {
-      min-height: 670px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 20px;
-      padding-top: 45px;
-      padding-bottom: 55px;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 3;
-      padding: 35px 0;
-      animation: rise .9s ease both;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 13px;
-      border: 1px solid rgba(110,231,255,.2);
-      border-radius: 30px;
-      background: rgba(57,133,255,.08);
-      color: var(--cyan);
-      font-size: 11px;
-      margin-bottom: 24px;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #67e8b4;
-      box-shadow: 0 0 12px #67e8b4;
-    }
-
-    h1 {
-      font-size: clamp(42px, 5.4vw, 76px);
-      line-height: 1.35;
-      font-weight: 900;
-      letter-spacing: -2.5px;
-    }
-
-    h1 .name {
-      display: block;
-      background: linear-gradient(100deg, #fff 15%, #a7d4ff 55%, #59caff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 8px 30px rgba(57,133,255,.15));
-    }
-
-    .subtitle {
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      margin-top: 13px;
-    }
-
-    .description {
-      max-width: 440px;
-      margin-top: 24px;
-      color: var(--muted);
-      line-height: 2.2;
-      font-size: 14px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      min-height: 49px;
-      padding: 0 22px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: 14px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: transform .25s, box-shadow .25s, background .25s;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .btn:hover { transform: translateY(-3px); }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(120deg, #2871f6, #399bff);
-      box-shadow: 0 10px 35px rgba(40,113,246,.23);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 14px 40px rgba(40,113,246,.36);
-    }
-
-    .btn-outline {
-      color: #d8e6ff;
-      border-color: var(--border);
-      background: rgba(255,255,255,.035);
-    }
-
-    .btn-outline:hover { background: rgba(255,255,255,.08); }
-
-    .hero-note {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 27px;
-      color: #8492af;
-      font-size: 11px;
-    }
-
-    .hero-note span { color: #5ed8ff; font-size: 16px; }
-
-    /* عکس خواننده */
-
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      min-height: 550px;
-      isolation: isolate;
-      animation: appear 1.2s ease both;
-    }
-
-    .visual-glow {
-      position: absolute;
-      width: 82%;
-      height: 65%;
-      left: 9%;
-      bottom: 8%;
-      z-index: -2;
-      border-radius: 50%;
-      background: rgba(25,101,255,.2);
-      filter: blur(75px);
-    }
-
-    .visual-ring {
-      position: absolute;
-      width: min(420px, 100%);
-      aspect-ratio: 1;
-      border: 1px solid rgba(110,231,255,.12);
-      border-radius: 50%;
-      bottom: 7%;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: -1;
-    }
-
-    .visual-ring::before,
-    .visual-ring::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(110,231,255,.08);
-      border-radius: 50%;
-      inset: 25px;
-    }
-
-    .visual-ring::after { inset: 55px; }
-
-    .artist-photo {
-      display: block;
-      width: min(100%, 520px);
-      max-height: 600px;
-      height: auto;
-      object-fit: contain;
-      object-position: bottom center;
-      background: transparent;
-      position: relative;
-      z-index: 2;
-      filter: drop-shadow(0 15px 45px rgba(0,0,0,.32));
-      -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    }
-
-    .photo-placeholder {
-      width: min(100%, 450px);
-      height: 510px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed rgba(110,231,255,.35);
-      border-radius: 180px 180px 28px 28px;
-      background: linear-gradient(160deg, rgba(57,133,255,.1), rgba(255,255,255,.02));
-      padding: 30px;
-      line-height: 2;
-    }
-
-    .floating-tag {
-      position: absolute;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 15px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 15px;
-      background: rgba(11,18,37,.78);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 15px 45px rgba(0,0,0,.2);
-      font-size: 11px;
-      color: #dce8ff;
-      animation: float 5s ease-in-out infinite;
-    }
-
-    .floating-tag .tag-icon {
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 11px;
-      background: rgba(57,133,255,.17);
-      color: var(--cyan);
-      font-size: 17px;
-    }
-
-    .floating-tag small {
-      display: block;
-      color: #8191b0;
-      font-size: 9px;
-      margin-top: 3px;
-    }
-
-    .tag-one { right: -5px; top: 28%; }
-    .tag-two { left: -2px; bottom: 20%; animation-delay: -2s; }
-
-    /* جداکننده */
-
-    .section-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(110,231,255,.2), transparent);
-    }
-
-    .section {
-      padding: 85px 0;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .section-heading .overline {
-      color: var(--cyan);
-      font-size: 11px;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(25px, 4vw, 38px);
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .section-heading p {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    /* کارت آهنگ */
-
-    .music-card {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 23px;
-      display: grid;
-      grid-template-columns: 210px 1fr;
-      align-items: center;
-      gap: 27px;
-      border: 1px solid var(--border);
-      border-radius: 25px;
-      background: linear-gradient(130deg, rgba(20,32,61,.82), rgba(10,15,30,.86));
-      box-shadow: 0 25px 80px rgba(0,0,0,.17);
-      overflow: hidden;
-    }
-
-    .cover-wrap {
-      position: relative;
-      aspect-ratio: 1;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #111b34;
-    }
-
-    .cover-wrap img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s;
-    }
-
-    .cover-wrap:hover img { transform: scale(1.06); }
-
-    .cover-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(3,7,18,.45), transparent 55%);
-      pointer-events: none;
-    }
-
-    .track-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--cyan);
-      font-size: 10px;
-      margin-bottom: 11px;
-    }
-
-    .track-label::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-    }
-
-    .track-info h3 {
-      font-size: 25px;
-      font-weight: 800;
-    }
-
-    .track-info .artist-name {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 7px;
-    }
-
-    .track-description {
-      color: #8d9bb7;
-      font-size: 11px;
-      margin-top: 14px;
-    }
-
-    .player { margin-top: 24px; }
-
-    .progress-area {
-      width: 100%;
-      height: 5px;
-      background: rgba(255,255,255,.1);
-      border-radius: 10px;
-      cursor: pointer;
-      position: relative;
-      direction: ltr;
-    }
-
-    .progress {
-      width: 0;
-      height: 100%;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #4c9bff, #70e7ff);
-      position: relative;
-    }
-
-    .progress::after {
-      content: "";
-      position: absolute;
-      right: -5px;
-      top: 50%;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: white;
-      box-shadow: 0 0 12px rgba(110,231,255,.7);
-    }
-
-    .time-row {
-      display: flex;
-      justify-content: space-between;
-      direction: ltr;
-      color: #7e8ba5;
-      font-size: 10px;
-      margin-top: 9px;
-    }
-
-    .player-controls {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 17px;
-    }
-
-    .control-btn {
-      display: grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
-      color: #dce9ff;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .control-btn:hover {
-      background: rgba(57,133,255,.18);
-      border-color: rgba(110,231,255,.3);
-    }
-
-    .play-btn {
-      width: 49px;
-      height: 49px;
-      color: white;
-      border: 0;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2776ff, #3da9ff);
-      box-shadow: 0 7px 24px rgba(39,118,255,.25);
-      font-size: 18px;
-    }
-
-    .volume-control {
-      width: 80px;
-      accent-color: #59b8ff;
-      cursor: pointer;
-    }
-
-    .player-status {
-      margin-right: auto;
-      color: #8293b5;
-      font-size: 10px;
-    }
-
-    .player-status.playing { color: #69e6b3; }
-
-    /* موج‌های صوتی */
-
-    .equalizer {
-      height: 36px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 22px;
-      opacity: .75;
-    }
-
-    .equalizer span {
-      display: block;
-      width: 3px;
-      height: 9px;
-      border-radius: 4px;
-      background: linear-gradient(to top, #3985ff, #6ee7ff);
-      animation: equalize .7s ease-in-out infinite alternate;
-      animation-play-state: paused;
-    }
-
-    .equalizer.active span { animation-play-state: running; }
-
-    .equalizer span:nth-child(3n) { animation-delay: -.4s; }
-    .equalizer span:nth-child(3n + 1) { animation-delay: -.2s; }
-    .equalizer span:nth-child(4n) { animation-duration: .45s; }
-
-    /* درباره */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-      margin-top: 35px;
-    }
-
-    .about-card {
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: rgba(255,255,255,.025);
-      transition: transform .25s, border-color .25s, background .25s;
-    }
-
-    .about-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(110,231,255,.25);
-      background: rgba(57,133,255,.055);
-    }
-
-    .about-icon {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: var(--cyan);
-      background: rgba(57,133,255,.13);
-      font-size: 20px;
-      margin-bottom: 17px;
-    }
-
-    .about-card h3 {
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    .about-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 2.1;
-    }
-
-    /* دعوت به شنیدن */
-
-    .listen-banner {
-      position: relative;
-      overflow: hidden;
-      padding: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border: 1px solid rgba(110,231,255,.17);
-      border-radius: 24px;
-      background:
-        radial-gradient(ellipse at 10% 50%, rgba(57,133,255,.2), transparent 45%),
-        linear-gradient(120deg, rgba(17,28,55,.9), rgba(9,14,29,.92));
-    }
-
-    .listen-banner h2 {
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 800;
-    }
-
-    .listen-banner p {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 10px;
-      line-height: 2;
-    }
-
-    footer {
-      margin-top: 55px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 28px 0;
-      color: #7f8ba5;
-      font-size: 11px;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      color: #dce7ff;
-      font-weight: 700;
-    }
-
-    .back-top {
-      width: 37px;
-      height: 37px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--cyan);
-    }
-
-    /* انیمیشن‌ها */
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(15px) scale(.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes equalize {
-      from { height: 5px; }
-      to { height: 30px; }
-    }
-
-    /* موبایل و تبلت */
-
-    @media (max-width: 850px) {
-      .nav-links { gap: 15px; }
-      .hero {
-        grid-template-columns: 1fr 1fr;
-        min-height: 570px;
-        gap: 5px;
-      }
-      .hero-visual { min-height: 440px; }
-      .artist-photo { max-height: 470px; }
-      .tag-one { right: -8px; }
-      .tag-two { left: -8px; }
-      .music-card { grid-template-columns: 160px 1fr; gap: 20px; }
-      .volume-control { width: 55px; }
-    }
-
-    @media (max-width: 620px) {
-      .container { width: min(100% - 30px, 500px); }
-      header { padding: 15px 0; }
-      .brand { font-size: 16px; }
-      .brand-mark { width: 38px; height: 38px; }
-      .nav-links { display: none; }
-      .nav-cta { padding: 9px 12px; font-size: 11px; }
-
-      .hero {
-        display: flex;
-        flex-direction: column-reverse;
-        min-height: auto;
-        padding-top: 18px;
-        padding-bottom: 45px;
-        gap: 0;
-      }
-
-      .hero-visual {
-        width: 100%;
-        min-height: 370px;
-        max-height: 440px;
-        margin-bottom: 10px;
-      }
-
-      .artist-photo {
-        width: min(100%, 370px);
-        max-height: 430px;
-      }
-
-      .visual-ring { width: 300px; bottom: 3%; }
-      .visual-glow { height: 60%; bottom: 4%; }
-      .tag-one { right: 0; top: 24%; }
-      .tag-two { left: 0; bottom: 12%; }
-
-      .floating-tag { padding: 8px 10px; font-size: 10px; }
-      .floating-tag .tag-icon { width: 29px; height: 29px; }
-
-      .hero-copy { padding: 12px 0 0; width: 100%; }
-      .eyebrow { margin-bottom: 16px; }
-      h1 { font-size: clamp(39px, 10vw, 55px); letter-spacing: -1.5px; }
-      .description { font-size: 13px; margin-top: 17px; }
-      .hero-actions { margin-top: 23px; }
-      .btn { min-height: 46px; padding: 0 17px; }
-      .hero-note { margin-top: 20px; }
-
-      .section { padding: 60px 0; }
-      .section-heading { margin-bottom: 25px; }
-
-      .music-card {
-        grid-template-columns: 1fr;
-        padding: 17px;
-        gap: 20px;
-        border-radius: 21px;
-      }
-
-      .cover-wrap {
-        width: min(100%, 280px);
-        margin: 0 auto;
-      }
-
-      .track-info h3 { font-size: 22px; }
-      .player { margin-top: 22px; }
-      .player-controls { gap: 10px; }
-      .volume-control { width: 58px; }
-      .player-status { font-size: 9px; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 12px; }
-      .about-card { padding: 21px; }
-      .listen-banner {
-        padding: 25px 20px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .footer-inner { justify-content: center; text-align: center; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070b19">
+<meta name="description" content="وب‌سایت رسمی حجت حسینی؛ جدیدترین آهنگ‌ها و آثار موسیقی">
+<title>حجت حسینی | وب‌سایت رسمی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b19;--blue:#3985ff;--cyan:#6ee7ff;--white:#f5f8ff;--muted:#a0aecb;--border:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Vazirmatn",Tahoma,sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 75% 25%,rgba(35,94,204,.22),transparent 42%),radial-gradient(ellipse at 12% 80%,rgba(27,130,181,.13),transparent 36%),linear-gradient(145deg,#0a1023,#050711 72%)}
+a{color:inherit;text-decoration:none}button,input{font:inherit}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:relative;z-index:10;padding:20px 0;border-bottom:1px solid #ffffff10;background:#050813aa;backdrop-filter:blur(18px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:900}
+.brand-mark{display:grid;place-items:center;width:43px;height:43px;border:1px solid #6ee7ff66;border-radius:14px;color:var(--cyan);background:#3985ff22;font-size:22px}
+.brand small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:25px;color:#c4cee4;font-size:13px}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{border:1px solid #6ee7ff55;border-radius:12px;padding:10px 16px;font-size:12px;color:var(--cyan);background:#3985ff14}
+.hero{min-height:640px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;padding:35px 0 45px}
+.hero-copy{position:relative;z-index:3;padding:35px 0;animation:rise .9s ease both}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid #6ee7ff33;border-radius:30px;background:#3985ff14;color:var(--cyan);font-size:11px;margin-bottom:24px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#67e8b4;box-shadow:0 0 12px #67e8b4}
+h1{font-size:clamp(42px,5.4vw,76px);line-height:1.35;font-weight:900;letter-spacing:-2px}
+h1 .name{display:block;background:linear-gradient(100deg,#fff 15%,#a7d4ff 55%,#59caff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--cyan);font-size:13px;font-weight:600;margin-top:13px}
+.description{max-width:440px;margin-top:24px;color:var(--muted);line-height:2.2;font-size:14px}
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin-top:30px}
+.btn{min-height:49px;padding:0 22px;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;cursor:pointer;border:1px solid transparent;transition:.25s;font-size:13px;font-weight:800}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{color:white;background:linear-gradient(120deg,#2871f6,#399bff);box-shadow:0 10px 35px #2871f63b}
+.btn-outline{color:#d8e6ff;border-color:var(--border);background:#ffffff09}
+.hero-note{display:flex;align-items:center;gap:9px;margin-top:27px;color:#8492af;font-size:11px}
+.hero-visual{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:540px;isolation:isolate;animation:appear 1.2s ease both}
+.visual-glow{position:absolute;width:82%;height:65%;left:9%;bottom:8%;z-index:-2;border-radius:50%;background:#1965ff33;filter:blur(75px)}
+.visual-ring{position:absolute;width:min(420px,100%);aspect-ratio:1;border:1px solid #6ee7ff22;border-radius:50%;bottom:7%;left:50%;transform:translateX(-50%);z-index:-1}
+.visual-ring:before,.visual-ring:after{content:"";position:absolute;border:1px solid #6ee7ff14;border-radius:50%;inset:25px}
+.visual-ring:after{inset:55px}
+.artist-photo{display:block;width:min(100%,520px);max-height:600px;height:auto;object-fit:contain;object-position:bottom center;position:relative;z-index:2;filter:drop-shadow(0 15px 45px #0005);-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%);mask-image:linear-gradient(to bottom,#000 85%,transparent 100%)}
+.photo-placeholder{width:min(100%,450px);height:510px;display:none;align-items:center;justify-content:center;text-align:center;color:var(--muted);border:1px dashed #6ee7ff55;border-radius:180px 180px 28px 28px;background:#3985ff12;padding:30px;line-height:2}
+.floating-tag{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;padding:12px 15px;border:1px solid #ffffff20;border-radius:15px;background:#0b1225e8;backdrop-filter:blur(16px);box-shadow:0 15px 45px #0003;animation:float 5s ease-in-out infinite}
+.tag-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#3985ff2b;color:var(--cyan);font-size:18px}
+.artist-name-tag{font-family:"Vazirmatn",Tahoma,sans-serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:0;text-shadow:0 0 18px #6ee7ff40}
+.artist-name-tag small{display:block;font-family:"Vazirmatn",Tahoma,sans-serif;font-size:11px;font-weight:800;color:#8ddfff;letter-spacing:0;margin-top:3px}
+.tag-one{right:-5px;top:28%}.tag-two{left:-2px;bottom:20%;animation-delay:-2s}
+.section-line{height:1px;background:linear-gradient(90deg,transparent,#6ee7ff33,transparent)}
+.section{padding:80px 0}
+.section-heading{text-align:center;margin-bottom:35px}
+.overline{color:var(--cyan);font-size:11px;margin-bottom:12px}
+.section-heading h2{font-size:clamp(25px,4vw,38px);font-weight:900}
+.section-heading p{margin-top:12px;color:var(--muted);font-size:13px;line-height:2}
+.music-card{max-width:850px;margin:auto;padding:23px;display:grid;grid-template-columns:210px 1fr;align-items:center;gap:27px;border:1px solid var(--border);border-radius:25px;background:linear-gradient(130deg,#14203dd1,#0a0f1eeb);box-shadow:0 25px 80px #0002;overflow:hidden}
+.cover-wrap{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;background:#111b34}
+.cover-wrap img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.cover-wrap:hover img{transform:scale(1.06)}
+.track-label{display:inline-flex;align-items:center;gap:7px;color:var(--cyan);font-size:10px;margin-bottom:11px}
+.track-label:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.track-info h3{font-size:25px;font-weight:900}
+.artist-name{color:var(--muted);font-size:12px;margin-top:7px}
+.track-description{color:#8d9bb7;font-size:11px;margin-top:14px}
+.player{margin-top:24px}
+.progress-area{width:100%;height:5px;background:#ffffff1a;border-radius:10px;cursor:pointer;position:relative;direction:ltr}
+.progress{width:0;height:100%;border-radius:10px;background:linear-gradient(90deg,#4c9bff,#70e7ff);position:relative}
+.progress:after{content:"";position:absolute;right:-5px;top:50%;width:11px;height:11px;border-radius:50%;transform:translateY(-50%);background:white;box-shadow:0 0 12px #6ee7ffb3}
+.time-row{display:flex;justify-content:space-between;direction:ltr;color:#7e8ba5;font-size:10px;margin-top:9px}
+.player-controls{display:flex;align-items:center;gap:14px;margin-top:17px}
+.control-btn{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--border);border-radius:12px;background:#ffffff0a;color:#dce9ff;cursor:pointer;transition:.2s}
+.control-btn:hover{background:#3985ff2e;border-color:#6ee7ff4d}
+.play-btn{width:49px;height:49px;color:white;border:0;border-radius:16px;background:linear-gradient(135deg,#2776ff,#3da9ff);box-shadow:0 7px 24px #2776ff40;font-size:18px}
+.volume-control{width:80px;accent-color:#59b8ff;cursor:pointer}
+.player-status{margin-right:auto;color:#8293b5;font-size:10px}
+.player-status.playing{color:#69e6b3}
+.equalizer{height:30px;display:flex;align-items:center;gap:4px;margin-top:18px;opacity:.75}
+.equalizer span{display:block;width:3px;height:9px;border-radius:4px;background:linear-gradient(to top,#3985ff,#6ee7ff);animation:equalize .7s ease-in-out infinite alternate;animation-play-state:paused}
+.equalizer.active span{animation-play-state:running}
+.equalizer span:nth-child(3n){animation-delay:-.4s}.equalizer span:nth-child(3n+1){animation-delay:-.2s}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:35px}
+.about-card{padding:25px;border:1px solid var(--border);border-radius:20px;background:#ffffff08;transition:.25s}
+.about-card:hover{transform:translateY(-5px);border-color:#6ee7ff40;background:#3985ff0e}
+.about-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;color:var(--cyan);background:#3985ff22;font-size:20px;margin-bottom:17px}
+.about-card h3{font-size:15px;margin-bottom:10px}
+.about-card p{font-size:12px;color:var(--muted);line-height:2.1}
+.listen-banner{padding:35px;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid #6ee7ff2b;border-radius:24px;background:radial-gradient(ellipse at 10% 50%,#3985ff33,transparent 45%),linear-gradient(120deg,#111c37e6,#090e1df0)}
+.listen-banner h2{font-size:clamp(20px,3vw,28px);font-weight:900}
+.listen-banner p{color:var(--muted);font-size:12px;margin-top:10px;line-height:2}
+footer{margin-top:55px;border-top:1px solid #ffffff12;padding:28px 0;color:#7f8ba5;font-size:11px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.footer-brand{color:#dce7ff;font-weight:800}
+.back-top{width:37px;height:37px;display:grid;place-items:center;border:1px solid var(--border);border-radius:12px;color:var(--cyan)}
+#particles{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes appear{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes equalize{from{height:5px}to{height:25px}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:0;padding-top:15px}.hero-copy{text-align:center;padding:45px 0 10px}.description{margin-left:auto;margin-right:auto}.hero-actions,.hero-note{justify-content:center}.hero-visual{min-height:450px;width:min(100%,520px);margin:auto}.artist-photo{max-height:490px}.tag-one{right:0}.tag-two{left:0}.music-card{grid-template-columns:170px 1fr;gap:20px}.nav-links{gap:13px}}
+@media(max-width:600px){.container{width:calc(100% - 28px)}header{padding:13px 0}.nav{flex-wrap:wrap}.brand{font-size:16px}.brand-mark{width:38px;height:38px}.nav-links{order:3;width:100%;justify-content:center;padding-top:8px;border-top:1px solid #ffffff0d}.nav-cta{padding:8px 11px}.hero{min-height:auto}.hero-copy{padding-top:35px}.eyebrow{margin-bottom:18px}h1{font-size:43px;letter-spacing:-1px}.description{font-size:13px}.hero-visual{min-height:390px}.artist-photo{max-height:420px}.photo-placeholder{height:380px}.floating-tag{padding:9px 11px;gap:7px}.tag-icon{width:29px;height:29px}.artist-name-tag{font-size:13px}.artist-name-tag small{font-size:10px}.tag-one{top:22%}.tag-two{bottom:15%}.section{padding:55px 0}.music-card{grid-template-columns:1fr;padding:16px;gap:20px}.cover-wrap{width:min(100%,260px);margin:auto}.track-info h3{font-size:23px}.player-controls{gap:9px}.volume-control{width:60px}.about-grid{grid-template-columns:1fr}.about-card{padding:22px}.listen-banner{padding:25px;flex-direction:column;text-align:center;align-items:stretch}.listen-banner .btn{width:100%}footer{margin-top:35px}.footer-inner{justify-content:center;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
 </head>
-
 <body>
-  <canvas id="particles" aria-hidden="true"></canvas>
-
-  <header id="top">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="صفحه اصلی حجت حسینی">
-        <span class="brand-mark">♪</span>
-        <span>
-          حجت حسینی
-          <small>OFFICIAL WEBSITE</small>
-        </span>
-      </a>
-
-      <nav class="nav-links" aria-label="منوی اصلی">
-        <a href="#top">صفحه اصلی</a>
-        <a href="#music">موسیقی</a>
-        <a href="#about">درباره هنرمند</a>
-      </nav>
-
-      <a class="nav-cta" href="#music">شنیدن آهنگ جدید ↙</a>
+<canvas id="particles" aria-hidden="true"></canvas>
+<header id="top">
+  <div class="container nav">
+    <a href="#top" class="brand"><span class="brand-mark">♫</span><span>حجت حسینی<small>وب‌سایت رسمی هنرمند</small></span></a>
+    <nav class="nav-links"><a href="#top">خانه</a><a href="#music">آهنگ‌ها</a><a href="#about">درباره هنرمند</a></nav>
+    <a class="nav-cta" href="#music">شنیدن آثار</a>
+  </div>
+</header>
+<main>
+<section class="container hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="live-dot"></span> وب‌سایت رسمی حجت حسینی</div>
+    <h1>صدایی از <span class="name">جنس احساس</span></h1>
+    <div class="subtitle">موسیقی و احساس</div>
+    <p class="description">به دنیای موسیقی حجت حسینی خوش اومدی؛ جایی که هر آهنگ، قصه‌ای برای شنیدن داره و هر صدا، حسی رو زنده می‌کنه</p>
+    <div class="hero-actions"><a href="#music" class="btn btn-primary">شنیدن جدیدترین آهنگ</a><a href="#about" class="btn btn-outline">بیشتر بشناس</a></div>
+    <div class="hero-note">موسیقی برای لحظه‌هایی که حرفی برای گفتن نیست</div>
+  </div>
+  <div class="hero-visual">
+    <div class="visual-glow"></div><div class="visual-ring"></div>
+    <img class="artist-photo" src="hojjat.png" alt="حجت حسینی" fetchpriority="high" onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex'">
+    <div class="photo-placeholder" id="photoPlaceholder">عکس حجت حسینی اینجا نمایش داده می‌شود<br>فایل عکس را با نام <b>hojjat.png</b><br>کنار فایل index.html آپلود کن</div>
+    <div class="floating-tag tag-one"><span class="tag-icon">♫</span><span class="artist-name-tag">حجت حسینی<small>خواننده و هنرمند</small></span></div>
+    <div class="floating-tag tag-two"><span class="tag-icon">✦</span><span class="artist-name-tag">حجت حسینی<small>هنرمند موسیقی</small></span></div>
+  </div>
+</section>
+<div class="section-line"></div>
+<section class="section container" id="music">
+  <div class="section-heading"><div class="overline">جدیدترین اثر</div><h2>فریاد بی‌صدا</h2><p>هدفونت رو بذار و برای چند دقیقه از دنیای شلوغ فاصله بگیر</p></div>
+  <div class="music-card">
+    <div class="cover-wrap"><img src="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp" alt="کاور آهنگ فریاد بی‌صدا از حجت حسینی" loading="lazy"></div>
+    <div class="track-info"><div class="track-label">اثر جدید</div><h3>فریاد بی‌صدا</h3><div class="artist-name">حجت حسینی</div><p class="track-description">موسیقی رو پخش کن و با حس این اثر همراه شو</p>
+      <div class="equalizer" id="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="player"><div class="progress-area" id="progressArea" role="slider" tabindex="0" aria-label="موقعیت آهنگ فریاد بی‌صدا" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress" id="progress"></div></div>
+        <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+        <div class="player-controls"><button class="control-btn" id="muteBtn" aria-label="قطع صدا">◖</button><input class="volume-control" id="volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="میزان صدا"><button class="control-btn play-btn" id="playBtn" aria-label="پخش آهنگ">▶</button><span class="player-status" id="playerStatus">آماده پخش</span></div>
+      </div>
+      <audio id="audio" preload="metadata" src="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3"></audio>
     </div>
-  </header>
-
-  <main>
-    <section class="container hero">
-      <div class="hero-copy">
-        <div class="eyebrow">
-          <span class="live-dot"></span>
-          وب‌سایت رسمی حجت حسینی
-        </div>
-
-        <h1>
-          صدایی از
-          <span class="name">جنس احساس</span>
-        </h1>
-
-        <div class="subtitle">HOJJAT HOSSEYNI · MUSIC & EMOTION</div>
-
-        <p class="description">
-          به دنیای موسیقی حجت حسینی خوش اومدی؛
-          جایی که هر آهنگ، قصه‌ای برای شنیدن داره
-          و هر صدا، حسی رو زنده می‌کنه
-        </p>
-
-        <div class="hero-actions">
-          <a href="#music" class="btn btn-primary">
-            <span>▶</span>
-            شنیدن جدیدترین آهنگ
-          </a>
-          <a href="#about" class="btn btn-outline">
-            بیشتر بشناس
-            <span>↙</span>
-          </a>
-        </div>
-
-        <div class="hero-note">
-          <span>✦</span>
-          موسیقی برای لحظه‌هایی که حرفی برای گفتن نیست
-        </div>
+  </div>
+</section>
+<section class="section container" id="koja-song">
+  <div class="section-heading"><div class="overline">آرشیو موسیقی</div><h2>آثار قبلی</h2><p>مروری بر آهنگ‌های حجت حسینی</p></div>
+  <div class="music-card">
+    <div class="cover-wrap"><img src="./079612D6-FFC0-439C-B5F9-252EB0329F37.png" alt="کاور آهنگ کجا از حجت حسینی" loading="lazy"></div>
+    <div class="track-info"><div class="track-label">اثر قبلی</div><h3>کجا</h3><div class="artist-name">حجت حسینی</div><p class="track-description">برای شنیدن این اثر، دکمه پخش را بزن</p>
+      <div class="equalizer" id="equalizerKoja" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="player"><div class="progress-area" id="progressAreaKoja" role="slider" tabindex="0" aria-label="موقعیت آهنگ کجا" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress" id="progressKoja"></div></div>
+        <div class="time-row"><span id="currentTimeKoja">0:00</span><span id="durationKoja">0:00</span></div>
+        <div class="player-controls"><button class="control-btn" id="muteBtnKoja" aria-label="قطع صدا">◖</button><input class="volume-control" id="volumeKoja" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="میزان صدا"><button class="control-btn play-btn" id="playBtnKoja" aria-label="پخش آهنگ کجا">▶</button><span class="player-status" id="playerStatusKoja">آماده پخش</span></div>
       </div>
-
-      <div class="hero-visual">
-        <div class="visual-glow"></div>
-        <div class="visual-ring"></div>
-
-        <!-- عکس شفاف حجت حسینی؛ فایل hojjat.png باید کنار index.html باشد -->
-        <img
-          class="artist-photo"
-          src="hojjat.png"
-          alt="حجت حسینی در حال اجرای موسیقی با میکروفون"
-          fetchpriority="high"
-          onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex';"
-        >
-
-        <div class="photo-placeholder" id="photoPlaceholder">
-          عکس حجت حسینی اینجا نمایش داده می‌شود
-          <br>
-          فایل عکس را با نام <b>hojjat.png</b>
-          <br>
-          کنار فایل index.html آپلود کن
-        </div>
-
-        <div class="floating-tag tag-one">
-          <span class="tag-icon">♫</span>
-          <span>
-            موسیقی و احساس
-            <small>Music · Emotion</small>
-          </span>
-        </div>
-
-        <div class="floating-tag tag-two">
-          <span class="tag-icon">✦</span>
-          <span>
-            فریاد بی‌صدا
-            <small>جدیدترین اثر</small>
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-line"></div>
-
-    <section class="section container" id="music">
-      <div class="section-heading">
-        <div class="overline">LATEST RELEASE</div>
-        <h2>جدیدترین اثر</h2>
-        <p>هدفونت رو بذار و برای چند دقیقه از دنیای شلوغ فاصله بگیر</p>
-      </div>
-
-      <div class="music-card">
-        <div class="cover-wrap">
-          <img
-            src="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp"
-            alt="کاور آهنگ فریاد بی‌صدا از حجت حسینی"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="track-info">
-          <div class="track-label">NEW RELEASE</div>
-          <h3>فریاد بی‌صدا</h3>
-          <div class="artist-name">حجت حسینی · Hojjat Hosseyni</div>
-          <p class="track-description">
-            موسیقی رو پلی کن و با حس این اثر همراه شو
-          </p>
-
-          <div class="equalizer" id="equalizer" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-          </div>
-
-          <div class="player">
-            <div
-              class="progress-area"
-              id="progressArea"
-              role="slider"
-              tabindex="0"
-              aria-label="موقعیت آهنگ"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow="0"
-            >
-              <div class="progress" id="progress"></div>
-            </div>
-
-            <div class="time-row">
-              <span id="currentTime">0:00</span>
-              <span id="duration">0:00</span>
-            </div>
-
-            <div class="player-controls">
-              <button class="control-btn" id="muteBtn" aria-label="قطع صدا" title="قطع یا وصل صدا">◖</button>
-
-              <input
-                class="volume-control"
-                id="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.05"
-                value="0.8"
-                aria-label="میزان صدا"
-              >
-
-              <button class="control-btn play-btn" id="playBtn" aria-label="پخش آهنگ">▶</button>
-
-              <span class="player-status" id="playerStatus">آماده پخش</span>
-            </div>
-          </div>
-
-          <audio
-            id="audio"
-            preload="metadata"
-            src="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3"
-          ></audio>
-        </div>
-      </div>
-    </section>
-
-    <!-- آهنگ قبلی: کجا؛ جدا از پخش‌کننده فریاد بی‌صدا -->
-    <section class="section container" id="koja-song">
-      <div class="section-heading">
-        <div class="overline">MUSIC ARCHIVE</div>
-        <h2>آثار قبلی</h2>
-        <p>مروری بر آهنگ‌های حجت حسینی</p>
-      </div>
-
-      <div class="music-card">
-        <div class="cover-wrap">
-          <img
-            src="./079612D6-FFC0-439C-B5F9-252EB0329F37.png"
-            alt="کاور آهنگ کجا از حجت حسینی"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="track-info">
-          <div class="track-label">PREVIOUS RELEASE</div>
-          <h3>کجا</h3>
-          <div class="artist-name">حجت حسینی · Hojjat Hosseyni</div>
-          <p class="track-description">
-            برای شنیدن این اثر، پخش‌کننده را اجرا کن
-          </p>
-
-          <audio
-            controls
-            preload="metadata"
-            style="width:100%;margin-top:24px"
-            src="https://uploadkon.ir/uploads/e25924_26-کجا-2-.mp3"
-          >
-            مرورگر شما از پخش صوت پشتیبانی نمی‌کند
-          </audio>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-line"></div>
-
-    <section class="section container" id="about">
-      <div class="section-heading">
-        <div class="overline">ABOUT THE ARTIST</div>
-        <h2>دنیای موسیقی حجت حسینی</h2>
-        <p>هر اثر، یک تجربه؛ هر ملودی، یک احساس</p>
-      </div>
-
-      <div class="about-grid">
-        <article class="about-card">
-          <div class="about-icon">♫</div>
-          <h3>موسیقی از جنس احساس</h3>
-          <p>
-            موسیقی می‌تونه بدون هیچ توضیحی، حرف دل آدم رو بیان کنه
-            و لحظه‌ها رو به خاطره تبدیل کنه
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-icon">✧</div>
-          <h3>آثار و آهنگ‌ها</h3>
-          <p>
-            جدیدترین آثار حجت حسینی رو در این صفحه دنبال کن
-            و به موسیقی موردعلاقه‌ات گوش بده
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-icon">◉</div>
-          <h3>همراهی شما</h3>
-          <p>
-            حمایت و همراهی شنونده‌ها، بخشی از مسیر هر هنرمنده؛
-            ممنون که اینجا هستی
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="listen-banner">
-        <div>
-          <h2>بذار موسیقی حرف بزنه</h2>
-          <p>برای شنیدن آهنگ «فریاد بی‌صدا» آماده‌ای؟</p>
-        </div>
-        <a href="#music" class="btn btn-primary">
-          رفتن به پخش‌کننده
-          <span>←</span>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-brand">حجت حسینی | HOJJAT HOSSEYNI</div>
-        <div style="margin-top:7px">وب‌سایت رسمی هنرمند</div>
-      </div>
-
-      <div>© <span id="year"></span> تمام حقوق محفوظ است</div>
-
-      <a href="#top" class="back-top" aria-label="بازگشت به بالا">↑</a>
+      <audio id="audioKoja" preload="metadata" src="https://uploadkon.ir/uploads/e25924_26-کجا-2-.mp3"></audio>
     </div>
-  </footer>
-
-  <script>
-    // پخش‌کننده موسیقی فریاد بی‌صدا
-    const audio = document.getElementById("audio");
-    const playBtn = document.getElementById("playBtn");
-    const muteBtn = document.getElementById("muteBtn");
-    const volume = document.getElementById("volume");
-    const progress = document.getElementById("progress");
-    const progressArea = document.getElementById("progressArea");
-    const currentTime = document.getElementById("currentTime");
-    const duration = document.getElementById("duration");
-    const playerStatus = document.getElementById("playerStatus");
-    const equalizer = document.getElementById("equalizer");
-
-    audio.volume = 0.8;
-
-    function formatTime(seconds) {
-      if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return mins + ":" + String(secs).padStart(2, "0");
-    }
-
-    function updatePlayState(isPlaying) {
-      playBtn.textContent = isPlaying ? "Ⅱ" : "▶";
-      playBtn.setAttribute("aria-label", isPlaying ? "توقف موقت آهنگ" : "پخش آهنگ");
-      equalizer.classList.toggle("active", isPlaying);
-      playerStatus.textContent = isPlaying ? "در حال پخش" : "آماده پخش";
-      playerStatus.classList.toggle("playing", isPlaying);
-    }
-
-    playBtn.addEventListener("click", async () => {
-      if (audio.paused) {
-        try {
-          await audio.play();
-        } catch (error) {
-          playerStatus.textContent = "پخش نشد؛ اتصال یا لینک آهنگ را بررسی کن";
-          playerStatus.classList.remove("playing");
-        }
-      } else {
-        audio.pause();
-      }
-    });
-
-    audio.addEventListener("play", () => updatePlayState(true));
-    audio.addEventListener("pause", () => updatePlayState(false));
-    audio.addEventListener("ended", () => updatePlayState(false));
-
-    audio.addEventListener("loadedmetadata", () => {
-      duration.textContent = formatTime(audio.duration);
-    });
-
-    audio.addEventListener("timeupdate", () => {
-      currentTime.textContent = formatTime(audio.currentTime);
-
-      if (Number.isFinite(audio.duration) && audio.duration > 0) {
-        const percent = (audio.currentTime / audio.duration) * 100;
-        progress.style.width = percent + "%";
-        progressArea.setAttribute("aria-valuenow", String(Math.round(percent)));
-      }
-    });
-
-    function seekFromPosition(event) {
-      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
-
-      const rect = progressArea.getBoundingClientRect();
-      const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-      audio.currentTime = ratio * audio.duration;
-    }
-
-    progressArea.addEventListener("click", seekFromPosition);
-
-    progressArea.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        event.preventDefault();
-        if (Number.isFinite(audio.duration)) {
-          audio.currentTime = Math.max(
-            0,
-            Math.min(audio.duration, audio.currentTime + (event.key === "ArrowRight" ? 5 : -5))
-          );
-        }
-      }
-    });
-
-    volume.addEventListener("input", () => {
-      audio.volume = Number(volume.value);
-      audio.muted = audio.volume === 0;
-      muteBtn.textContent = audio.muted ? "×" : "◖";
-    });
-
-    muteBtn.addEventListener("click", () => {
-      audio.muted = !audio.muted;
-      muteBtn.textContent = audio.muted ? "×" : "◖";
-    });
-
-    audio.addEventListener("error", () => {
-      playerStatus.textContent = "لینک آهنگ در دسترس نیست";
-      playerStatus.classList.remove("playing");
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ذرات نور پس‌زمینه
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    let particles = [];
-    let width = 0;
-    let height = 0;
-    let animationFrame;
-
-    function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const count = Math.min(65, Math.floor(width / 18));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.6 + .3,
-        vx: (Math.random() - .5) * .18,
-        vy: -Math.random() * .22 - .03,
-        alpha: Math.random() * .5 + .12
-      }));
-    }
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.y < -5) {
-          p.y = height + 5;
-          p.x = Math.random() * width;
-        }
-
-        if (p.x < -5) p.x = width + 5;
-        if (p.x > width + 5) p.x = -5;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(110, 210, 255, " + p.alpha + ")";
-        ctx.fill();
-      }
-
-      animationFrame = requestAnimationFrame(drawParticles);
-    }
-
-    resizeCanvas();
-    drawParticles();
-
-    window.addEventListener("resize", resizeCanvas);
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrame);
-      } else {
-        cancelAnimationFrame(animationFrame);
-        drawParticles();
-      }
-    });
-  </script>
+  </div>
+</section>
+<div class="section-line"></div>
+<section class="section container" id="about">
+  <div class="section-heading"><div class="overline">درباره هنرمند</div><h2>دنیای موسیقی حجت حسینی</h2><p>هر اثر، یک تجربه؛ هر ملودی، یک احساس</p></div>
+  <div class="about-grid">
+    <article class="about-card"><div class="about-icon">♫</div><h3>موسیقی از جنس احساس</h3><p>موسیقی می‌تونه بدون هیچ توضیحی، حرف دل آدم رو بیان کنه و لحظه‌ها رو به خاطره تبدیل کنه</p></article>
+    <article class="about-card"><div class="about-icon">✧</div><h3>آثار و آهنگ‌ها</h3><p>جدیدترین آثار حجت حسینی رو در این صفحه دنبال کن و به موسیقی موردعلاقه‌ات گوش بده</p></article>
+    <article class="about-card"><div class="about-icon">◉</div><h3>همراهی شما</h3><p>حمایت و همراهی شنونده‌ها، بخشی از مسیر هر هنرمنده؛ ممنون که اینجا هستی</p></article>
+  </div>
+</section>
+<section class="container"><div class="listen-banner"><div><h2>بذار موسیقی حرف بزنه</h2><p>برای شنیدن آهنگ «فریاد بی‌صدا» آماده‌ای؟</p></div><a href="#music" class="btn btn-primary">رفتن به پخش‌کننده</a></div></section>
+</main>
+<footer><div class="container footer-inner"><div><div class="footer-brand">حجت حسینی | وب‌سایت رسمی</div><div style="margin-top:7px">وب‌سایت رسمی هنرمند</div></div><div>© <span id="year"></span> تمام حقوق محفوظ است</div><a href="#top" class="back-top" aria-label="بازگشت به بالا">↑</a></div></footer>
+<script>
+function formatTime(seconds){if(!Number.isFinite(seconds)||seconds<0)return"0:00";const mins=Math.floor(seconds/60);const secs=Math.floor(seconds%60);return mins+":"+String(secs).padStart(2,"0")}
+function setupPlayer(suffix){
+ const audio=document.getElementById("audio"+suffix),playBtn=document.getElementById("playBtn"+suffix),muteBtn=document.getElementById("muteBtn"+suffix),volume=document.getElementById("volume"+suffix),progress=document.getElementById("progress"+suffix),progressArea=document.getElementById("progressArea"+suffix),currentTime=document.getElementById("currentTime"+suffix),duration=document.getElementById("duration"+suffix),status=document.getElementById("playerStatus"+suffix),equalizer=document.getElementById("equalizer"+suffix);
+ audio.volume=.8;
+ function update(isPlaying){playBtn.textContent=isPlaying?"Ⅱ":"▶";playBtn.setAttribute("aria-label",isPlaying?"توقف موقت آهنگ":"پخش آهنگ");equalizer.classList.toggle("active",isPlaying);status.textContent=isPlaying?"در حال پخش":"آماده پخش";status.classList.toggle("playing",isPlaying)}
+ playBtn.addEventListener("click",async()=>{if(audio.paused){try{await audio.play()}catch(e){status.textContent="پخش نشد؛ اتصال یا لینک آهنگ را بررسی کن";status.classList.remove("playing")}}else audio.pause()});
+ audio.addEventListener("play",()=>update(true));audio.addEventListener("pause",()=>update(false));audio.addEventListener("ended",()=>update(false));
+ audio.addEventListener("loadedmetadata",()=>duration.textContent=formatTime(audio.duration));
+ audio.addEventListener("timeupdate",()=>{currentTime.textContent=formatTime(audio.currentTime);if(Number.isFinite(audio.duration)&&audio.duration>0){const p=audio.currentTime/audio.duration*100;progress.style.width=p+"%";progressArea.setAttribute("aria-valuenow",String(Math.round(p)))}});
+ function seek(e){if(!Number.isFinite(audio.duration)||audio.duration<=0)return;const rect=progressArea.getBoundingClientRect();const ratio=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));audio.currentTime=ratio*audio.duration}
+ progressArea.addEventListener("click",seek);progressArea.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();if(Number.isFinite(audio.duration))audio.currentTime=Math.max(0,Math.min(audio.duration,audio.currentTime+(e.key==="ArrowRight"?5:-5)))}});
+ volume.addEventListener("input",()=>{audio.volume=Number(volume.value);audio.muted=audio.volume===0;muteBtn.textContent=audio.muted?"×":"◖"});
+ muteBtn.addEventListener("click",()=>{audio.muted=!audio.muted;muteBtn.textContent=audio.muted?"×":"◖"});
+ audio.addEventListener("error",()=>{status.textContent="لینک آهنگ در دسترس نیست";status.classList.remove("playing")});
+}
+setupPlayer("");setupPlayer("Koja");
+document.getElementById("year").textContent=new Date().getFullYear();
+const canvas=document.getElementById("particles"),ctx=canvas.getContext("2d");let particles=[],w=0,h=0,frame;
+function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);w=window.innerWidth;h=window.innerHeight;canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);canvas.style.width=w+"px";canvas.style.height=h+"px";ctx.setTransform(dpr,0,0,dpr,0,0);particles=Array.from({length:Math.min(65,Math.floor(w/18))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.3,vx:(Math.random()-.5)*.18,vy:-Math.random()*.22-.03,a:Math.random()*.5+.12}))}
+function draw(){ctx.clearRect(0,0,w,h);for(const p of particles){p.x+=p.vx;p.y+=p.vy;if(p.y< -5){p.y=h+5;p.x=Math.random()*w}if(p.x< -5)p.x=w+5;if(p.x>w+5)p.x=-5;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(110,210,255,"+p.a+")";ctx.fill()}frame=requestAnimationFrame(draw)}
+resize();draw();window.addEventListener("resize",resize);document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(frame);else{cancelAnimationFrame(frame);draw()}});
+</script>
 </body>
 </html>

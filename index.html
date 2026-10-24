@@ -1,14 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07162f">
-  <meta name="description" content="وب‌سایت رسمی حجت حسینی؛ شنیدن آهنگ‌ها، مشاهده آثار و دنبال کردن تازه‌ترین اخبار موسیقی.">
-  <meta property="og:title" content="حجت حسینی | وب‌سایت رسمی">
-  <meta property="og:description" content="به دنیای موسیقی حجت حسینی خوش آمدید">
-  <meta property="og:image" content="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp">
+  <meta name="theme-color" content="#070b18">
+  <meta name="description" content="وب‌سایت رسمی حجت حسینی؛ شنیدن آثار، موزیک‌های جدید و ورود به دنیای موسیقی.">
   <title>حجت حسینی | وب‌سایت رسمی</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,17 +13,20 @@
 
   <style>
     :root {
-      --bg: #050b18;
-      --panel: #0b1830;
-      --panel-light: #102342;
-      --blue: #3478f6;
-      --blue-light: #74b5ff;
-      --text: #f5f8ff;
-      --muted: #91a4c4;
-      --border: rgba(150,190,255,.13);
+      --bg: #070b18;
+      --panel: rgba(17, 26, 49, .76);
+      --blue: #527cff;
+      --cyan: #63d8ff;
+      --text: #f5f7ff;
+      --muted: #9aa8c7;
+      --border: rgba(155, 180, 255, .15);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -35,32 +34,79 @@
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
       font-family: "Vazirmatn", Tahoma, sans-serif;
-      line-height: 1.8;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(43, 83, 190, .17), transparent 38%),
+        radial-gradient(ellipse at 90% 60%, rgba(23, 147, 202, .10), transparent 35%),
+        var(--bg);
       overflow-x: hidden;
     }
 
-    button, input { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; text-decoration: none; }
-
-    button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--blue-light);
-      outline-offset: 4px;
-    }
-
-    .ambient {
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: -1;
-      background:
-        radial-gradient(ellipse at 75% 10%, rgba(28,91,200,.19), transparent 38%),
-        radial-gradient(ellipse at 10% 80%, rgba(12,74,152,.12), transparent 40%);
+      background-image:
+        linear-gradient(rgba(130, 160, 255, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(130, 160, 255, .025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
     }
+
+    button, input {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .ambient {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .12;
+      pointer-events: none;
+      z-index: -1;
+      background: #3b65ff;
+      top: 15%;
+      right: -180px;
+      animation: ambientMove 12s ease-in-out infinite alternate;
+    }
+
+    .ambient.two {
+      top: auto;
+      right: auto;
+      bottom: -200px;
+      left: -150px;
+      background: #00bce7;
+      animation-delay: -5s;
+    }
+
+    @keyframes ambientMove {
+      to { transform: translate(80px, 100px) scale(1.25); }
+    }
+
+    /* Intro screen */
 
     .intro {
       position: fixed;
@@ -68,433 +114,632 @@
       z-index: 100;
       display: grid;
       place-items: center;
-      padding: 25px;
-      text-align: center;
       background:
-        linear-gradient(135deg, rgba(3,10,25,.94), rgba(5,25,57,.95)),
-        radial-gradient(circle at center, #164b98, #030817 75%);
-      transition: opacity .7s ease, visibility .7s ease;
+        radial-gradient(ellipse at center, rgba(43, 76, 173, .23), transparent 55%),
+        #070b18;
+      transition: opacity .8s ease, visibility .8s ease;
     }
 
-    .intro.hidden {
+    .intro.hide {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
 
+    #introCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
     .intro-content {
-      width: min(100%, 680px);
-      animation: rise 1s ease both;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px;
+      animation: reveal 1.2s both;
     }
 
     .monogram {
-      width: 94px;
-      height: 94px;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 27px;
       display: grid;
       place-items: center;
-      margin: 0 auto 27px;
-      border: 1px solid rgba(130,190,255,.55);
-      border-radius: 28px;
-      color: white;
-      background: linear-gradient(145deg, rgba(59,126,255,.3), rgba(10,35,75,.35));
-      box-shadow: 0 0 65px rgba(48,120,255,.22);
-      font-size: 32px;
+      border: 1px solid rgba(125, 164, 255, .6);
+      border-radius: 30px;
+      transform: rotate(-5deg);
+      background: linear-gradient(145deg, rgba(74, 112, 255, .24), rgba(10, 20, 48, .55));
+      box-shadow: 0 0 65px rgba(69, 111, 255, .23), inset 0 0 25px rgba(100, 157, 255, .08);
+    }
+
+    .monogram span {
+      font-size: 42px;
       font-weight: 900;
-      letter-spacing: -3px;
+      letter-spacing: -5px;
+      color: #fff;
+      transform: rotate(5deg);
+      text-shadow: 0 0 25px rgba(91, 160, 255, .8);
     }
 
     .eyebrow {
-      color: var(--blue-light);
+      color: var(--cyan);
       font-size: 11px;
+      font-weight: 700;
       letter-spacing: 4px;
-      direction: ltr;
+      margin-bottom: 15px;
     }
 
     .intro h1 {
-      margin: 8px 0;
-      font-size: clamp(43px, 8vw, 76px);
+      font-size: clamp(35px, 7vw, 70px);
       font-weight: 900;
       letter-spacing: -2px;
+      line-height: 1.4;
+      text-shadow: 0 10px 45px rgba(80, 121, 255, .2);
     }
 
     .intro p {
-      color: #a5b8d9;
+      color: var(--muted);
       font-size: 14px;
-      margin: 12px 0 30px;
+      margin-top: 12px;
     }
 
-    .primary-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 14px 27px;
-      color: white;
-      border: 0;
-      border-radius: 12px;
-      background: linear-gradient(110deg, #2465eb, #439bff);
-      box-shadow: 0 12px 35px rgba(35,105,235,.25);
+    .enter-btn {
+      margin-top: 35px;
+      padding: 15px 29px;
+      border: 1px solid rgba(140, 172, 255, .5);
+      border-radius: 14px;
+      background: linear-gradient(120deg, #5579ff, #3152ca);
+      box-shadow: 0 10px 35px rgba(55, 91, 231, .28);
       cursor: pointer;
-      transition: transform .2s, filter .2s;
+      font-weight: 700;
+      transition: .25s;
     }
 
-    .primary-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-    .skip-btn {
-      display: block;
-      margin: 18px auto 0;
-      border: 0;
-      color: #8da4c8;
-      background: transparent;
-      cursor: pointer;
-      font-size: 12px;
+    .enter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 45px rgba(55, 91, 231, .4);
     }
 
-    .site { min-height: 100vh; }
+    .intro-note {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #667594;
+    }
 
-    .topbar {
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+
+    .header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(5,11,24,.83);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(160, 180, 255, .09);
+      background: rgba(7, 11, 24, .78);
+      backdrop-filter: blur(22px);
     }
 
     .nav {
-      width: min(1160px, calc(100% - 36px));
       min-height: 76px;
-      margin: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 25px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
-      font-weight: 800;
+      gap: 12px;
+      font-size: 17px;
+      font-weight: 900;
       white-space: nowrap;
     }
 
-    .brand-icon {
-      width: 42px;
-      height: 42px;
+    .brand-mark {
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
-      border-radius: 13px;
+      border: 1px solid rgba(106, 147, 255, .5);
+      border-radius: 12px;
+      background: linear-gradient(145deg, #314d9c, #10182d);
       color: white;
-      background: linear-gradient(145deg, #3478f6, #102b59);
-      font-size: 17px;
-      direction: ltr;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: 1.5px;
-      direction: ltr;
+      font-weight: 900;
+      letter-spacing: -2px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 25px;
-      color: #aebdd5;
+      gap: 26px;
+      color: #aab5d0;
       font-size: 13px;
     }
 
-    .nav-links a:hover { color: white; }
+    .nav-links a {
+      transition: color .2s;
+    }
 
-    .nav-cta {
-      padding: 9px 15px;
-      border: 1px solid rgba(88,151,255,.35);
-      border-radius: 10px;
-      color: #dceaff;
-      background: rgba(40,100,200,.12);
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-action {
+      padding: 10px 17px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(67, 99, 201, .14);
       font-size: 12px;
-      white-space: nowrap;
+      transition: .2s;
     }
 
-    main {
-      width: min(1160px, calc(100% - 36px));
-      margin: auto;
+    .nav-action:hover {
+      border-color: var(--blue);
+      background: rgba(67, 99, 201, .27);
     }
+
+    /* Hero */
 
     .hero {
-      min-height: 465px;
-      padding: 70px 0 45px;
+      min-height: 610px;
       display: grid;
       grid-template-columns: 1.1fr .9fr;
       align-items: center;
       gap: 45px;
+      padding-top: 60px;
+      padding-bottom: 75px;
     }
 
-    .hero-copy { position: relative; z-index: 1; }
+    .hero-copy {
+      animation: reveal .9s both;
+    }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
+      gap: 9px;
+      padding: 8px 13px;
       border: 1px solid var(--border);
-      border-radius: 30px;
-      color: #b5d5ff;
-      background: rgba(34,88,165,.12);
+      border-radius: 100px;
+      background: rgba(69, 101, 203, .09);
+      color: #c1d0ff;
       font-size: 11px;
+      margin-bottom: 22px;
     }
 
-    .dot {
+    .live-dot {
       width: 7px;
       height: 7px;
+      background: #67d8ff;
       border-radius: 50%;
-      background: #4b9dff;
-      box-shadow: 0 0 12px #4b9dff;
+      box-shadow: 0 0 13px #67d8ff;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      50% { opacity: .35; transform: scale(.75); }
     }
 
     .hero h2 {
-      margin: 20px 0 12px;
-      font-size: clamp(35px, 5.5vw, 62px);
-      line-height: 1.3;
+      font-size: clamp(39px, 5.6vw, 70px);
+      line-height: 1.42;
+      letter-spacing: -2.5px;
       font-weight: 900;
-      letter-spacing: -1.5px;
     }
 
-    .hero h2 span {
-      display: block;
-      color: var(--blue-light);
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, #fff 5%, #80a3ff 47%, #63d8ff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
     }
 
-    .hero-copy > p {
-      max-width: 480px;
+    .hero-description {
+      max-width: 500px;
+      margin-top: 20px;
       color: var(--muted);
       font-size: 14px;
-      line-height: 2.2;
+      line-height: 2.3;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 12px;
-      margin-top: 27px;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
 
-    .secondary-btn {
+    .primary-btn, .secondary-btn {
+      min-height: 49px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: #d4e2fa;
-      background: rgba(255,255,255,.025);
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .hero-art {
-      position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 330px;
-    }
-
-    .hero-orbit {
-      position: absolute;
-      width: min(330px, 90%);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1px solid rgba(85,150,255,.17);
-      box-shadow: 0 0 80px rgba(35,105,235,.08), inset 0 0 70px rgba(35,105,235,.05);
-    }
-
-    .hero-orbit::before, .hero-orbit::after {
-      content: "";
-      position: absolute;
-      inset: 23px;
-      border: 1px solid rgba(85,150,255,.11);
-      border-radius: 50%;
-    }
-
-    .hero-orbit::after { inset: 48px; }
-
-    .hero-emblem {
-      position: relative;
-      width: min(255px, 70%);
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(116,181,255,.35);
-      border-radius: 34%;
-      background: linear-gradient(145deg, rgba(41,105,215,.25), rgba(7,20,42,.95));
-      box-shadow: 0 25px 90px rgba(0,0,0,.35), 0 0 55px rgba(35,105,235,.12);
-      transform: rotate(-7deg);
-    }
-
-    .hero-emblem span {
-      transform: rotate(7deg);
-      font-size: clamp(58px, 9vw, 94px);
-      font-weight: 900;
-      letter-spacing: -8px;
-      background: linear-gradient(135deg, #fff, #73b5ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .floating-tag {
-      position: absolute;
-      right: 0;
-      bottom: 28px;
-      padding: 11px 15px;
-      border: 1px solid var(--border);
+      gap: 10px;
       border-radius: 13px;
-      background: rgba(11,24,48,.9);
-      color: #c8d9f4;
-      font-size: 11px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.2);
+      padding: 0 20px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s;
     }
 
-    .section { padding: 38px 0; }
+    .primary-btn {
+      border: 1px solid #718fff;
+      background: linear-gradient(120deg, #5278ff, #3654ca);
+      box-shadow: 0 10px 30px rgba(55, 91, 231, .18);
+    }
 
-    .section-heading {
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .primary-btn:hover, .secondary-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .stats {
       display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 22px;
+      gap: 32px;
+      margin-top: 43px;
     }
 
-    .section-heading h2 {
-      margin: 0;
-      font-size: 24px;
+    .stat strong {
+      display: block;
+      font-size: 21px;
       font-weight: 800;
     }
 
-    .section-heading p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 12px;
+    .stat span {
+      color: #8390ae;
+      font-size: 11px;
+    }
+
+    /* Artwork */
+
+    .hero-art {
+      position: relative;
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .art-glow {
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      background: #345cff;
+      filter: blur(90px);
+      opacity: .28;
+      z-index: -1;
+      animation: glow 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      to { transform: scale(1.25); opacity: .4; }
+    }
+
+    .art-ring {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(116, 158, 255, .19);
+      border-radius: 50%;
+      animation: rotate 28s linear infinite;
+    }
+
+    .art-ring::before, .art-ring::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #6fdcff;
+      box-shadow: 0 0 20px #63d8ff;
+    }
+
+    .art-ring::before {
+      top: 40px;
+      right: 35px;
+    }
+
+    .art-ring::after {
+      bottom: 50px;
+      left: 20px;
+      width: 5px;
+      height: 5px;
+    }
+
+    .art-ring.ring-two {
+      width: 265px;
+      height: 265px;
+      border-style: dashed;
+      border-color: rgba(106, 130, 255, .25);
+      animation-direction: reverse;
+      animation-duration: 36s;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .art-card {
+      position: relative;
+      width: min(290px, 80%);
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid rgba(174, 195, 255, .32);
+      border-radius: 25px;
+      background:
+        radial-gradient(ellipse at 50% 25%, rgba(89, 125, 255, .35), transparent 45%),
+        linear-gradient(150deg, #18284c, #0b1124 75%);
+      box-shadow: 0 35px 90px rgba(0, 0, 0, .4), 0 0 60px rgba(62, 99, 235, .14);
+      transform: rotate(-3deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-12px) rotate(-1deg); }
+    }
+
+    .art-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, transparent 20%, rgba(255,255,255,.09) 48%, transparent 65%);
+      transform: translateX(-130%);
+      animation: shine 7s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes shine {
+      25%, 100% { transform: translateX(130%); }
+    }
+
+    .art-card .art-monogram {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 115px;
+      font-weight: 900;
+      letter-spacing: -15px;
+      color: rgba(184, 205, 255, .18);
+      text-shadow: 0 0 50px rgba(90, 139, 255, .23);
+    }
+
+    .art-bottom {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 25px 22px;
+      background: linear-gradient(transparent, rgba(5, 9, 22, .96));
+      z-index: 3;
+    }
+
+    .art-bottom small {
+      color: #91b7ff;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .art-bottom strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .art-bottom span {
+      color: #9ba9c8;
+      font-size: 11px;
+    }
+
+    .floating-label {
+      position: absolute;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(13, 20, 41, .8);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.2);
+      font-size: 11px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .floating-label.one {
+      top: 55px;
+      right: 0;
+    }
+
+    .floating-label.two {
+      bottom: 45px;
+      left: 0;
+      animation-delay: -2s;
+    }
+
+    .floating-label b {
+      color: var(--cyan);
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* General sections */
+
+    .section {
+      padding: 65px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
     }
 
     .section-kicker {
-      color: var(--blue-light);
+      color: var(--cyan);
       font-size: 10px;
-      letter-spacing: 2px;
-      direction: ltr;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 9px;
     }
+
+    .section-heading h2 {
+      font-size: clamp(24px, 3vw, 35px);
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .text-link {
+      color: #9ab4ff;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .text-link:hover {
+      color: white;
+    }
+
+    /* Music player */
 
     .music-card {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 28px;
-      align-items: center;
-      padding: 23px;
-      border: 1px solid rgba(100,155,255,.18);
-      border-radius: 24px;
-      background: linear-gradient(120deg, rgba(17,43,83,.82), rgba(8,19,38,.96));
-      box-shadow: 0 20px 65px rgba(0,0,0,.15);
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: linear-gradient(125deg, rgba(25, 37, 69, .76), rgba(11, 17, 33, .82));
+      box-shadow: 0 30px 80px rgba(0,0,0,.14);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .music-card::after {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: 20%;
+      width: 250px;
+      height: 250px;
+      background: #466dff;
+      filter: blur(120px);
+      opacity: .10;
+      pointer-events: none;
     }
 
     .cover-wrap {
       position: relative;
-      width: 100%;
       aspect-ratio: 1;
-      overflow: hidden;
-      border-radius: 17px;
-      background: #142a4a;
-      box-shadow: 0 12px 35px rgba(0,0,0,.3);
+      border-radius: 18px;
+      isolation: isolate;
+    }
+
+    .cover-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(104, 148, 255, .24);
+      border-radius: 23px;
+      animation: rotate 18s linear infinite;
     }
 
     .cover-wrap img {
+      position: relative;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
       display: block;
+      background: #101a34;
     }
 
-    .cover-wrap::after {
-      content: "";
+    .cover-badge {
       position: absolute;
-      inset: 55% 0 0;
-      background: linear-gradient(transparent, rgba(0,0,0,.3));
-      pointer-events: none;
+      right: 12px;
+      top: 12px;
+      padding: 6px 9px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(6, 12, 27, .72);
+      backdrop-filter: blur(10px);
+      font-size: 9px;
+      z-index: 2;
+    }
+
+    .player-main {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .track-label {
-      color: var(--blue-light);
+      color: var(--cyan);
       font-size: 10px;
-      letter-spacing: 2px;
-      direction: ltr;
-    }
-
-    .track-info h3 {
-      margin: 6px 0 0;
-      font-size: clamp(23px, 3vw, 32px);
       font-weight: 800;
+      letter-spacing: 2px;
     }
 
-    .track-info > p {
-      margin: 4px 0 17px;
+    .track-title {
+      margin-top: 9px;
+      font-size: clamp(25px, 4vw, 38px);
+      font-weight: 900;
+    }
+
+    .track-artist {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      margin-top: 5px;
     }
 
-    .player-controls {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin: 17px 0;
+    .visualizer {
+      width: 100%;
+      height: 100px;
+      margin: 12px 0 0;
+      opacity: .92;
     }
 
-    .play-btn {
-      flex: 0 0 49px;
-      width: 49px;
-      height: 49px;
-      display: grid;
-      place-items: center;
-      border: 0;
-      border-radius: 50%;
-      color: white;
-      background: linear-gradient(140deg, #3478f6, #52aaff);
-      box-shadow: 0 5px 24px rgba(48,120,246,.25);
-      font-size: 19px;
-      cursor: pointer;
+    #visualizer {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    .small-control {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: #c5d7f3;
-      background: rgba(255,255,255,.025);
-      cursor: pointer;
-    }
-
-    .time {
-      color: #9fb2d0;
-      font-size: 10px;
-      direction: ltr;
-      white-space: nowrap;
+    .progress-area {
+      margin-top: 8px;
     }
 
     .progress {
       width: 100%;
       height: 5px;
-      display: block;
-      margin: 10px 0;
+      border-radius: 10px;
       appearance: none;
-      border-radius: 8px;
-      background: #263a59;
+      -webkit-appearance: none;
+      background: rgba(149, 168, 218, .18);
       cursor: pointer;
-      accent-color: #4d9aff;
+      direction: ltr;
+      display: block;
     }
 
     .progress::-webkit-slider-thumb {
@@ -502,403 +747,730 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #78b8ff;
-      box-shadow: 0 0 9px rgba(75,157,255,.6);
+      background: #fff;
+      border: 3px solid #6589ff;
+      box-shadow: 0 0 12px rgba(83, 126, 255, .8);
     }
 
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .progress::-moz-range-thumb {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #6589ff;
     }
 
-    .volume-row {
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      direction: ltr;
+      color: #8c9abd;
+      font-size: 10px;
+      margin-top: 9px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .controls {
       display: flex;
       align-items: center;
-      gap: 9px;
-      color: #9fb2d0;
-      font-size: 11px;
+      gap: 13px;
+      margin-top: 18px;
+    }
+
+    .icon-btn {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(151, 175, 255, .14);
+      border-radius: 12px;
+      background: rgba(255,255,255,.035);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .icon-btn:hover {
+      border-color: rgba(115, 155, 255, .6);
+      background: rgba(91, 125, 255, .14);
+      transform: translateY(-2px);
+    }
+
+    .icon-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .play-btn {
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7295ff, #3e5bd6);
+      box-shadow: 0 8px 25px rgba(66, 101, 231, .3);
+    }
+
+    .play-btn svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .control-spacer {
+      flex: 1;
+    }
+
+    .volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .volume {
-      width: 90px;
-      accent-color: #4d9aff;
-    }
-
-    .player-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 13px;
-    }
-
-    .track-actions { display: flex; gap: 9px; }
-
-    .text-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 11px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      color: #c7d9f5;
-      background: rgba(255,255,255,.025);
-      font-size: 11px;
+      width: 75px;
+      height: 4px;
+      accent-color: #7da0ff;
       cursor: pointer;
     }
 
-    .status {
-      min-height: 20px;
-      color: #83b8ff;
-      font-size: 11px;
+    .player-status {
+      color: #7f91b5;
+      font-size: 10px;
+      margin-top: 15px;
+      min-height: 18px;
     }
 
-    .cards {
+    .playing .cover-wrap::before {
+      border-color: rgba(103, 216, 255, .6);
+      box-shadow: 0 0 25px rgba(73, 142, 255, .14);
+    }
+
+    .playing .track-title {
+      text-shadow: 0 0 28px rgba(96, 143, 255, .2);
+    }
+
+    /* Archive */
+
+    .track-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 17px;
     }
 
-    .placeholder-card {
-      min-height: 175px;
-      padding: 22px;
+    .track-item {
+      padding: 17px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
       border: 1px solid var(--border);
       border-radius: 17px;
-      background: linear-gradient(145deg, rgba(17,38,71,.55), rgba(8,17,34,.8));
-      transition: transform .25s, border-color .25s;
+      background: rgba(17, 26, 49, .55);
+      transition: .25s;
     }
 
-    .placeholder-card:hover {
+    .track-item:hover {
       transform: translateY(-4px);
-      border-color: rgba(85,150,255,.35);
+      border-color: rgba(108, 148, 255, .4);
+      background: rgba(30, 44, 79, .6);
     }
 
-    .placeholder-icon {
-      width: 43px;
-      height: 43px;
+    .track-number {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
-      margin-bottom: 18px;
-      border-radius: 13px;
-      color: #91c5ff;
-      background: rgba(45,112,226,.15);
-      font-size: 19px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(83, 120, 255, .22), rgba(37, 52, 103, .18));
+      color: #a9bdff;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .placeholder-card h3 { margin: 0 0 6px; font-size: 15px; }
-    .placeholder-card p { margin: 0; color: var(--muted); font-size: 12px; }
+    .track-info {
+      min-width: 0;
+    }
 
-    .coming {
-      display: inline-block;
-      margin-top: 12px;
-      color: #80b9ff;
+    .track-info strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .track-info span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
       font-size: 10px;
     }
 
-    .social-panel {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 19px;
-      background: linear-gradient(100deg, rgba(29,75,143,.22), rgba(11,24,48,.75));
+    .coming {
+      margin-right: auto;
+      flex-shrink: 0;
+      padding: 5px 7px;
+      border-radius: 7px;
+      color: #9aabd1;
+      background: rgba(125, 147, 194, .09);
+      font-size: 9px;
     }
 
-    .social-panel h3 { margin: 0; font-size: 17px; }
-    .social-panel p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    /* About */
+
+    .about-card {
+      position: relative;
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(115deg, rgba(22, 35, 68, .75), rgba(10, 17, 33, .65));
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: "HH";
+      position: absolute;
+      left: 15px;
+      top: -65px;
+      font-size: 220px;
+      font-weight: 900;
+      letter-spacing: -25px;
+      color: rgba(105, 140, 255, .035);
+      pointer-events: none;
+    }
+
+    .about-card h2 {
+      font-size: 25px;
+      font-weight: 900;
+      position: relative;
+    }
+
+    .about-card p {
+      max-width: 720px;
+      margin-top: 15px;
+      color: var(--muted);
+      line-height: 2.5;
+      font-size: 13px;
+      position: relative;
+    }
+
+    /* Footer */
 
     footer {
-      margin-top: 40px;
-      border-top: 1px solid var(--border);
+      margin-top: 50px;
+      border-top: 1px solid rgba(160, 180, 255, .1);
+      background: rgba(5, 8, 17, .4);
     }
 
     .footer-inner {
-      width: min(1160px, calc(100% - 36px));
-      margin: auto;
-      padding: 23px 0;
+      min-height: 110px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: #8295b5;
-      font-size: 11px;
+      gap: 20px;
     }
 
-    .ltr { direction: ltr; }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
+    .footer-brand strong {
+      display: block;
+      font-size: 14px;
     }
 
-    @media (max-width: 760px) {
-      .nav { min-height: 67px; gap: 10px; }
-      .nav-links { gap: 12px; font-size: 11px; }
-      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
-      .nav-cta { padding: 8px 10px; font-size: 10px; }
-      .hero { grid-template-columns: 1fr; gap: 10px; padding-top: 48px; }
-      .hero-copy { text-align: center; }
-      .hero-copy > p { margin-inline: auto; }
-      .hero-actions { justify-content: center; }
-      .hero-art { min-height: 260px; grid-row: 1; }
-      .hero-emblem { width: 190px; }
-      .hero-orbit { width: 250px; }
-      .floating-tag { right: calc(50% - 140px); bottom: 8px; }
-      .music-card { grid-template-columns: 1fr; padding: 16px; gap: 20px; }
-      .cover-wrap { width: min(100%, 270px); margin: auto; }
-      .track-info { text-align: center; }
-      .player-controls { justify-content: center; }
-      .player-bottom { justify-content: center; }
-      .cards { grid-template-columns: 1fr; }
-      .placeholder-card { min-height: auto; }
-      .section-heading h2 { font-size: 21px; }
+    .footer-brand span {
+      display: block;
+      margin-top: 5px;
+      color: #7785a4;
+      font-size: 10px;
+    }
+
+    .footer-copy {
+      color: #7785a4;
+      font-size: 10px;
+      text-align: left;
+      line-height: 2;
+    }
+
+    /* Scroll animation */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
       }
+    }
+
+    @media (max-width: 850px) {
+      .nav-links { gap: 15px; }
+      .nav-links a:nth-child(3) { display: none; }
+      .hero { gap: 10px; }
+      .hero-art { min-height: 340px; }
+      .art-ring { width: 275px; height: 275px; }
+      .art-ring.ring-two { width: 225px; height: 225px; }
+      .music-card { grid-template-columns: 220px 1fr; gap: 23px; padding: 20px; }
+      .track-grid { grid-template-columns: repeat(2, 1fr); }
+      .volume { width: 55px; }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, 500px); }
+      .nav { min-height: 66px; gap: 10px; }
+      .brand { font-size: 14px; gap: 8px; }
+      .brand-mark { width: 35px; height: 35px; }
+      .nav-links { gap: 13px; font-size: 11px; }
+      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+      .nav-action { padding: 9px 10px; font-size: 10px; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+        padding-bottom: 45px;
+        gap: 20px;
+      }
+      .hero-copy { text-align: center; }
+      .hero-description { margin-inline: auto; font-size: 12px; }
+      .hero-actions, .stats { justify-content: center; }
+      .stats { margin-top: 30px; gap: 27px; }
+      .stat strong { font-size: 18px; }
+      .hero-art { min-height: 365px; margin-top: 10px; }
+      .art-card { width: 235px; }
+      .art-ring { width: 275px; height: 275px; }
+      .art-ring.ring-two { width: 220px; height: 220px; }
+      .floating-label.one { right: 0; top: 38px; }
+      .floating-label.two { left: 0; bottom: 30px; }
+      .section { padding: 42px 0; }
+      .section-heading { align-items: start; }
+      .section-heading h2 { font-size: 24px; }
+      .section-heading p { font-size: 11px; }
+      .music-card { grid-template-columns: 1fr; padding: 16px; gap: 23px; }
+      .cover-wrap { width: min(100%, 270px); margin: 0 auto; }
+      .player-main { padding: 0 3px 5px; }
+      .track-title { font-size: 29px; }
+      .visualizer { height: 85px; }
+      .controls { gap: 9px; }
+      .volume { width: 47px; }
+      .track-grid { grid-template-columns: 1fr; gap: 11px; }
+      .about-card { padding: 27px 22px; }
+      .about-card h2 { font-size: 22px; }
+      .about-card p { font-size: 12px; }
+      .footer-inner { padding: 25px 0; align-items: start; }
+    }
+
+    @media (max-width: 370px) {
+      .volume-wrap { display: none; }
+      .floating-label { padding: 9px 10px; }
+      .hero h2 { font-size: 36px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="ambient" aria-hidden="true"></div>
+  <div class="ambient"></div>
+  <div class="ambient two"></div>
+
+  <canvas id="introCanvas" aria-hidden="true" style="display:none"></canvas>
 
   <section class="intro" id="intro" aria-label="صفحه ورود">
+    <canvas id="introParticles"></canvas>
     <div class="intro-content">
-      <div class="monogram" aria-hidden="true">HH</div>
-      <div class="eyebrow">THE OFFICIAL MUSIC WORLD</div>
+      <div class="monogram"><span>HH</span></div>
+      <div class="eyebrow">OFFICIAL ARTIST WEBSITE</div>
       <h1>حجت حسینی</h1>
-      <p>جایی برای شنیدن، احساس کردن و زندگی کردن با موسیقی</p>
-      <button class="primary-btn" id="enterBtn" type="button">
-        ورود به دنیای موسیقی <span aria-hidden="true">←</span>
-      </button>
-      <button class="skip-btn" id="skipBtn" type="button">ورود سریع</button>
+      <p>اینجا موسیقی، حرف‌هایی را می‌زند که نمی‌توان گفت</p>
+      <button class="enter-btn" id="enterBtn">ورود به دنیای موسیقی <span aria-hidden="true">↙</span></button>
+      <div class="intro-note">HOJJAT HOSSEINI · OFFICIAL</div>
     </div>
   </section>
 
-  <div class="site">
-    <header class="topbar">
-      <nav class="nav" aria-label="منوی اصلی">
-        <a class="brand" href="#home" aria-label="صفحه اصلی حجت حسینی">
-          <span class="brand-icon">HH</span>
-          <span>حجت حسینی<small>HOJJAT HOSSEINI</small></span>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="صفحه اصلی حجت حسینی">
+        <span class="brand-mark">HH</span>
+        <span>حجت حسینی</span>
+      </a>
+
+      <nav class="nav-links" aria-label="منوی اصلی">
+        <a href="#home">صفحه اصلی</a>
+        <a href="#music">موزیک‌ها</a>
+        <a href="#archive">آرشیو آثار</a>
+        <a href="#about">درباره هنرمند</a>
+      </nav>
+
+      <a class="nav-action" href="#music">شنیدن آخرین اثر</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-copy">
+        <div class="pill"><span class="live-dot"></span> وب‌سایت رسمی هنرمند</div>
+
+        <h2>
+          دنیایی از<br>
+          <span class="gradient-text">احساس و موسیقی</span>
+        </h2>
+
+        <p class="hero-description">
+          به دنیای موسیقی حجت حسینی خوش آمدید؛ جایی برای شنیدن صداهایی از دل،
+          دنبال کردن آثار تازه و تجربه لحظه‌هایی که با موسیقی ماندگار می‌شوند.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="#music">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 5 12 7-12 7z"/></svg>
+            پخش جدیدترین آهنگ
+          </a>
+          <a class="secondary-btn" href="#archive">مشاهده آثار</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>01</strong><span>اثر منتشرشده در سایت</span></div>
+          <div class="stat"><strong>24/7</strong><span>دنیای موسیقی</span></div>
+          <div class="stat"><strong>HH</strong><span>امضای هنری</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="طراحی هنری حجت حسینی">
+        <div class="art-glow"></div>
+        <div class="art-ring"></div>
+        <div class="art-ring ring-two"></div>
+
+        <div class="art-card">
+          <div class="art-monogram">HH</div>
+          <div class="art-bottom">
+            <small>HOJJAT HOSSEINI</small>
+            <strong>حجت حسینی</strong>
+            <span>صدایی از جنس احساس</span>
+          </div>
+        </div>
+
+        <div class="floating-label one">
+          <b>NEW RELEASE</b>
+          جدیدترین اثر هنرمند
+        </div>
+
+        <div class="floating-label two">
+          <b>OFFICIAL MUSIC</b>
+          موسیقی با کیفیت
+        </div>
+      </div>
+    </section>
+
+    <section class="section container reveal" id="music">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">LATEST RELEASE</div>
+          <h2>جدیدترین اثر</h2>
+          <p>هدفونت رو بذار و در موسیقی غرق شو</p>
+        </div>
+        <a href="#archive" class="text-link">آرشیو آثار ←</a>
+      </div>
+
+      <div class="music-card" id="musicCard">
+        <div class="cover-wrap">
+          <span class="cover-badge">OFFICIAL TRACK</span>
+          <img
+            id="coverImage"
+            src="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp"
+            alt="کاور آهنگ فریاد بی‌صدا از حجت حسینی"
+          >
+        </div>
+
+        <div class="player-main">
+          <div class="track-label">LATEST RELEASE · 2026</div>
+          <h3 class="track-title">فریاد بی‌صدا</h3>
+          <p class="track-artist">حجت حسینی</p>
+
+          <div class="visualizer">
+            <canvas id="visualizer" aria-label="نمایش متحرک موسیقی"></canvas>
+          </div>
+
+          <div class="progress-area">
+            <input class="progress" id="progress" type="range" min="0" max="1000" value="0" aria-label="موقعیت آهنگ">
+            <div class="time-row">
+              <span id="currentTime">00:00</span>
+              <span id="duration">00:00</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="icon-btn" id="restartBtn" aria-label="شروع مجدد" title="شروع مجدد">
+              <svg viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 2.7 6.4"/><path d="M3 4v7h7"/></svg>
+            </button>
+
+            <button class="icon-btn play-btn" id="playBtn" aria-label="پخش آهنگ" title="پخش یا توقف">
+              <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 4.5a1 1 0 0 1 1.5-.86l11 6.5a1 1 0 0 1 0 1.72l-11 6.5A1 1 0 0 1 7 17.5z"/></svg>
+            </button>
+
+            <button class="icon-btn" id="muteBtn" aria-label="قطع صدا" title="قطع یا وصل صدا">
+              <svg id="volumeIcon" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 9a5 5 0 0 1 0 6"/><path d="M18 6a9 9 0 0 1 0 12"/></svg>
+            </button>
+
+            <div class="volume-wrap">
+              <input class="volume" id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="تنظیم صدا">
+            </div>
+
+            <div class="control-spacer"></div>
+
+            <button class="icon-btn" id="shareBtn" aria-label="اشتراک‌گذاری آهنگ" title="اشتراک‌گذاری">
+              <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg>
+            </button>
+
+            <a class="icon-btn" id="downloadLink" href="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3" target="_blank" rel="noopener" aria-label="باز کردن فایل آهنگ" title="باز کردن فایل آهنگ">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 18v3h14v-3"/></svg>
+            </a>
+          </div>
+
+          <p class="player-status" id="playerStatus" role="status">برای شنیدن آهنگ، دکمه پخش را بزن</p>
+        </div>
+      </div>
+
+      <audio
+        id="audio"
+        preload="metadata"
+        crossorigin="anonymous"
+        src="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3"
+      ></audio>
+    </section>
+
+    <section class="section container reveal" id="archive">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">MUSIC COLLECTION</div>
+          <h2>آرشیو آثار</h2>
+          <p>مسیر موسیقی حجت حسینی را دنبال کنید</p>
+        </div>
+      </div>
+
+      <div class="track-grid">
+        <a class="track-item" href="#music">
+          <span class="track-number">01</span>
+          <span class="track-info">
+            <strong>فریاد بی‌صدا</strong>
+            <span>حجت حسینی · جدیدترین اثر</span>
+          </span>
+          <span class="coming">پخش</span>
         </a>
 
-        <div class="nav-links">
-          <a href="#home">خانه</a>
-          <a href="#music">موسیقی</a>
-          <a href="#archive">آرشیو آثار</a>
+        <div class="track-item">
+          <span class="track-number">02</span>
+          <span class="track-info">
+            <strong>اثر بعدی</strong>
+            <span>اطلاعات به‌زودی منتشر می‌شود</span>
+          </span>
+          <span class="coming">به‌زودی</span>
         </div>
 
-        <a class="nav-cta" href="#music">شنیدن آهنگ‌ها ↗</a>
-      </nav>
-    </header>
-
-    <main id="home">
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="pill"><span class="dot"></span> وب‌سایت رسمی هنرمند</div>
-          <h2>موسیقی، فراتر از <span>کلمات</span></h2>
-          <p>
-            به دنیای موسیقی حجت حسینی خوش آمدید؛
-            آثار، آهنگ‌ها و لحظه‌هایی برای شنیدن با تمام وجود.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-btn" href="#music">▶ &nbsp; پخش جدیدترین آهنگ</a>
-            <a class="secondary-btn" href="#archive">مشاهده آرشیو آثار</a>
-          </div>
+        <div class="track-item">
+          <span class="track-number">03</span>
+          <span class="track-info">
+            <strong>اثر بعدی</strong>
+            <span>منتظر انتشار جدید باشید</span>
+          </span>
+          <span class="coming">به‌زودی</span>
         </div>
-
-        <div class="hero-art" aria-label="نشان هنری حجت حسینی">
-          <div class="hero-orbit"></div>
-          <div class="hero-emblem"><span>HH</span></div>
-          <div class="floating-tag">♪ &nbsp; موسیقی با احساس</div>
-        </div>
-      </section>
-
-      <section class="section" id="music">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">LATEST RELEASE</div>
-            <h2>جدیدترین آهنگ</h2>
-            <p>به آهنگ گوش بده و لحظه‌ات رو با موسیقی بساز</p>
-          </div>
-        </div>
-
-        <article class="music-card">
-          <div class="cover-wrap">
-            <img
-              id="cover"
-              src="https://upmusics.com/wp-content/uploads/2026/10/Hojjat-Hosseyni-Faryade-bi-Seda-0c178.webp"
-              alt="کاور آهنگ فریاد بی‌صدا از حجت حسینی"
-              referrerpolicy="no-referrer"
-            >
-          </div>
-
-          <div class="track-info">
-            <div class="track-label">SINGLE RELEASE</div>
-            <h3>فریاد بی‌صدا</h3>
-            <p>حجت حسینی · Hojjat Hosseini</p>
-
-            <div class="progress-row">
-              <span class="time" id="currentTime">0:00</span>
-              <input class="progress" id="seekBar" type="range"
-                     min="0" max="100" value="0" step="0.1"
-                     aria-label="موقعیت پخش آهنگ">
-              <span class="time" id="duration">0:00</span>
-            </div>
-
-            <div class="player-controls">
-              <button class="small-control" id="restartBtn" type="button"
-                      aria-label="شروع دوباره آهنگ" title="شروع دوباره">↺</button>
-              <button class="play-btn" id="playBtn" type="button"
-                      aria-label="پخش آهنگ" title="پخش">▶</button>
-              <button class="small-control" id="muteBtn" type="button"
-                      aria-label="قطع صدا" title="قطع صدا">♫</button>
-            </div>
-
-            <div class="player-bottom">
-              <div class="volume-row">
-                <span>صدا</span>
-                <input class="volume" id="volumeBar" type="range"
-                       min="0" max="1" step="0.05" value="0.8"
-                       aria-label="تنظیم میزان صدا">
-              </div>
-
-              <div class="track-actions">
-                <button class="text-btn" id="shareBtn" type="button">↗ اشتراک‌گذاری</button>
-                <a class="text-btn"
-                   href="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3"
-                   target="_blank" rel="noopener noreferrer">↓ لینک آهنگ</a>
-              </div>
-            </div>
-
-            <div class="status" id="playerStatus" role="status" aria-live="polite">
-              برای شنیدن آهنگ، دکمه پخش را بزن
-            </div>
-          </div>
-        </article>
-
-        <audio id="audioPlayer" preload="metadata" playsinline>
-          <source
-            src="https://irsv.upmusics.com/singletracks/2026/10/Hojjat%20Hosseyni%20-%20Faryade%20Bi%20Seda%20UpMusics.mp3"
-            type="audio/mpeg">
-          مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
-        </audio>
-      </section>
-
-      <section class="section" id="archive">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">MUSIC COLLECTION</div>
-            <h2>دنیای آثار</h2>
-            <p>آرشیو موسیقی و محتوای هنری حجت حسینی</p>
-          </div>
-        </div>
-
-        <div class="cards">
-          <article class="placeholder-card">
-            <div class="placeholder-icon">♫</div>
-            <h3>تک‌آهنگ‌ها</h3>
-            <p>آهنگ‌های منتشرشده به‌صورت تک‌آهنگ</p>
-            <span class="coming">در حال تکمیل آرشیو</span>
-          </article>
-
-          <article class="placeholder-card">
-            <div class="placeholder-icon">▤</div>
-            <h3>آلبوم‌ها</h3>
-            <p>مجموعه آثار و آلبوم‌های موسیقی</p>
-            <span class="coming">به‌زودی</span>
-          </article>
-
-          <article class="placeholder-card">
-            <div class="placeholder-icon">▷</div>
-            <h3>موزیک‌ویدئوها</h3>
-            <p>تماشای کلیپ‌ها و ویدئوهای رسمی</p>
-            <span class="coming">به‌زودی</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="social">
-        <div class="social-panel">
-          <div>
-            <h3>همراه دنیای موسیقی حجت حسینی باش</h3>
-            <p>لینک شبکه‌های اجتماعی رسمی در این بخش قرار می‌گیرند.</p>
-          </div>
-          <!-- لینک اینستاگرام رسمی بعداً اینجا اضافه شود -->
-          <span class="text-btn">شبکه‌های اجتماعی · به‌زودی</span>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <span>© <span id="year"></span> حجت حسینی — تمامی حقوق محفوظ است.</span>
-        <span class="ltr">HOJJAT HOSSEINI · OFFICIAL WEBSITE</span>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section class="section container reveal" id="about">
+      <div class="about-card">
+        <div class="section-kicker">ABOUT THE ARTIST</div>
+        <h2>درباره حجت حسینی</h2>
+        <p>
+          موسیقی، راهی برای بیان احساساتی است که گاهی کلمات از گفتنشان ناتوان‌اند.
+          این وب‌سایت با هدف معرفی آثار حجت حسینی، دسترسی آسان به آهنگ‌ها و همراهی
+          با مخاطبان ساخته شده است. اخبار و آثار جدید در همین صفحه به‌روزرسانی خواهند شد.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>حجت حسینی | HOJJAT HOSSEINI</strong>
+        <span>وب‌سایت رسمی هنرمند</span>
+      </div>
+      <div class="footer-copy">
+        تمامی حقوق آثار برای صاحبان قانونی آن‌ها محفوظ است<br>
+        © <span id="year"></span> HOJJAT HOSSEINI
+      </div>
+    </div>
+  </footer>
 
   <script>
     (() => {
       "use strict";
 
-      const intro = document.getElementById("intro");
-      const enterBtn = document.getElementById("enterBtn");
-      const skipBtn = document.getElementById("skipBtn");
-      const audio = document.getElementById("audioPlayer");
-      const playBtn = document.getElementById("playBtn");
-      const restartBtn = document.getElementById("restartBtn");
-      const muteBtn = document.getElementById("muteBtn");
-      const seekBar = document.getElementById("seekBar");
-      const volumeBar = document.getElementById("volumeBar");
-      const currentTime = document.getElementById("currentTime");
-      const duration = document.getElementById("duration");
-      const status = document.getElementById("playerStatus");
-      const shareBtn = document.getElementById("shareBtn");
+      const $ = (id) => document.getElementById(id);
 
-      document.getElementById("year").textContent = new Date().getFullYear();
-      audio.volume = 0.8;
+      const intro = $("intro");
+      const enterBtn = $("enterBtn");
+      const audio = $("audio");
+      const playBtn = $("playBtn");
+      const playIcon = $("playIcon");
+      const progress = $("progress");
+      const currentTimeEl = $("currentTime");
+      const durationEl = $("duration");
+      const playerStatus = $("playerStatus");
+      const musicCard = $("musicCard");
+      const volume = $("volume");
+      const muteBtn = $("muteBtn");
+      const visualizerCanvas = $("visualizer");
+      const vctx = visualizerCanvas.getContext("2d");
+
+      $("year").textContent = new Date().getFullYear();
 
       function enterSite() {
-        intro.classList.add("hidden");
+        intro.classList.add("hide");
       }
 
       enterBtn.addEventListener("click", enterSite);
-      skipBtn.addEventListener("click", enterSite);
 
-      function formatTime(seconds) {
-        if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return minutes + ":" + String(secs).padStart(2, "0");
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") enterSite();
+      });
+
+      // Intro particle animation
+      const introCanvas = $("introParticles");
+      const ictx = introCanvas.getContext("2d");
+      let introParticles = [];
+      let introFrame = 0;
+
+      function resizeIntro() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        introCanvas.width = window.innerWidth * dpr;
+        introCanvas.height = window.innerHeight * dpr;
+        introCanvas.style.width = window.innerWidth + "px";
+        introCanvas.style.height = window.innerHeight + "px";
+        ictx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        introParticles = Array.from(
+          { length: Math.min(85, Math.floor(window.innerWidth / 14)) },
+          () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            r: Math.random() * 1.7 + .3,
+            speed: Math.random() * .35 + .08,
+            alpha: Math.random() * .6 + .15
+          })
+        );
       }
 
-      function updatePlayButton(isPlaying) {
-        playBtn.textContent = isPlaying ? "Ⅱ" : "▶";
-        playBtn.setAttribute("aria-label", isPlaying ? "توقف موقت" : "پخش آهنگ");
-        playBtn.title = isPlaying ? "توقف موقت" : "پخش آهنگ";
+      function animateIntro() {
+        introFrame++;
+        ictx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        introParticles.forEach((p) => {
+          p.y -= p.speed;
+          if (p.y < -5) {
+            p.y = window.innerHeight + 5;
+            p.x = Math.random() * window.innerWidth;
+          }
+
+          ictx.beginPath();
+          ictx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ictx.fillStyle = `rgba(116, 166, 255, ${p.alpha})`;
+          ictx.fill();
+
+          if (introFrame % 2 === 0) {
+            ictx.beginPath();
+            ictx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+            ictx.fillStyle = `rgba(83, 129, 255, ${p.alpha * .07})`;
+            ictx.fill();
+          }
+        });
+
+        if (!intro.classList.contains("hide")) {
+          requestAnimationFrame(animateIntro);
+        }
+      }
+
+      resizeIntro();
+      requestAnimationFrame(animateIntro);
+      window.addEventListener("resize", resizeIntro);
+
+      // Reveal sections on scroll
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+      // Audio player
+      let audioContext = null;
+      let analyser = null;
+      let sourceNode = null;
+      let frequencyData = null;
+      let animationId = null;
+      let syntheticLevel = 0;
+      let audioSetupFailed = false;
+
+      function formatTime(seconds) {
+        if (!Number.isFinite(seconds) || seconds < 0) return "00:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+      }
+
+      function updatePlayIcon(isPlaying) {
+        if (isPlaying) {
+          playIcon.innerHTML = '<path d="M6 5h4v14H6z M14 5h4v14h-4z"/>';
+          playBtn.setAttribute("aria-label", "توقف آهنگ");
+        } else {
+          playIcon.innerHTML = '<path d="M7 4.5a1 1 0 0 1 1.5-.86l11 6.5a1 1 0 0 1 0 1.72l-11 6.5A1 1 0 0 1 7 17.5z"/>';
+          playBtn.setAttribute("aria-label", "پخش آهنگ");
+        }
+      }
+
+      async function setupAnalyser() {
+        if (audioContext || audioSetupFailed) return;
+
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) throw new Error("Web Audio unavailable");
+
+          audioContext = new AudioContextClass();
+          analyser = audioContext.createAnalyser();
+          analyser.fftSize = 256;
+          analyser.smoothingTimeConstant = 0.78;
+
+          sourceNode = audioContext.createMediaElementSource(audio);
+          sourceNode.connect(analyser);
+          analyser.connect(audioContext.destination);
+
+          frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+          await audioContext.resume();
+        } catch (error) {
+          audioSetupFailed = true;
+          console.info("Visualizer will use animated fallback.", error);
+        }
       }
 
       async function togglePlayback() {
         if (audio.paused) {
-          status.textContent = "در حال اتصال به سرور آهنگ…";
+          playerStatus.textContent = "در حال بارگذاری آهنگ...";
           try {
+            await setupAnalyser();
             await audio.play();
           } catch (error) {
-            status.textContent =
-              "پخش انجام نشد؛ ممکن است لینک آهنگ در دسترس نباشد. لینک مستقیم را امتحان کن.";
-            updatePlayButton(false);
+            playerStatus.textContent = "پخش نشد؛ اتصال اینترنت یا دسترسی به فایل آهنگ را بررسی کن";
           }
         } else {
           audio.pause();
@@ -908,94 +1480,200 @@
       playBtn.addEventListener("click", togglePlayback);
 
       audio.addEventListener("play", () => {
-        updatePlayButton(true);
-        status.textContent = "در حال پخش فریاد بی‌صدا";
+        updatePlayIcon(true);
+        musicCard.classList.add("playing");
+        playerStatus.textContent = "در حال پخش فریاد بی‌صدا";
+        if (audioContext && audioContext.state === "suspended") {
+          audioContext.resume().catch(() => {});
+        }
       });
 
       audio.addEventListener("pause", () => {
-        updatePlayButton(false);
-        if (audio.ended) return;
-        if (audio.currentTime > 0) status.textContent = "پخش متوقف شد";
-      });
-
-      audio.addEventListener("loadedmetadata", () => {
-        duration.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener("durationchange", () => {
-        duration.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener("timeupdate", () => {
-        currentTime.textContent = formatTime(audio.currentTime);
-        if (Number.isFinite(audio.duration) && audio.duration > 0) {
-          seekBar.value = (audio.currentTime / audio.duration) * 100;
-        }
-      });
-
-      audio.addEventListener("waiting", () => {
-        status.textContent = "در حال بارگذاری آهنگ…";
-      });
-
-      audio.addEventListener("canplay", () => {
-        if (audio.paused) status.textContent = "آماده پخش";
+        updatePlayIcon(false);
+        musicCard.classList.remove("playing");
+        if (!audio.ended) playerStatus.textContent = "پخش آهنگ متوقف شده";
       });
 
       audio.addEventListener("ended", () => {
-        updatePlayButton(false);
-        seekBar.value = 0;
-        status.textContent = "آهنگ به پایان رسید";
+        playerStatus.textContent = "پایان آهنگ";
+        progress.value = 0;
       });
 
-      audio.addEventListener("error", () => {
-        updatePlayButton(false);
-        status.textContent =
-          "خطا در دریافت آهنگ؛ احتمالاً سرور میزبان اجازه پخش مستقیم نمی‌دهد.";
+      audio.addEventListener("loadedmetadata", () => {
+        durationEl.textContent = formatTime(audio.duration);
       });
 
-      seekBar.addEventListener("input", () => {
-        if (Number.isFinite(audio.duration) && audio.duration > 0) {
-          audio.currentTime = (Number(seekBar.value) / 100) * audio.duration;
+      audio.addEventListener("durationchange", () => {
+        durationEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener("timeupdate", () => {
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+
+        if (Number.isFinite(audio.duration) && audio.duration > 0 && !progress.matches(":active")) {
+          progress.value = String((audio.currentTime / audio.duration) * 1000);
         }
       });
 
-      volumeBar.addEventListener("input", () => {
-        audio.volume = Number(volumeBar.value);
-        audio.muted = audio.volume === 0;
-        muteBtn.textContent = audio.muted ? "×" : "♫";
+      audio.addEventListener("error", () => {
+        playerStatus.textContent = "بارگذاری آهنگ ناموفق بود؛ ممکن است لینک فایل تغییر کرده باشد";
       });
 
-      muteBtn.addEventListener("click", () => {
-        audio.muted = !audio.muted;
-        muteBtn.textContent = audio.muted ? "×" : "♫";
-        muteBtn.setAttribute("aria-label", audio.muted ? "فعال کردن صدا" : "قطع صدا");
+      progress.addEventListener("input", () => {
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          audio.currentTime = (Number(progress.value) / 1000) * audio.duration;
+        }
       });
 
-      restartBtn.addEventListener("click", () => {
+      $("restartBtn").addEventListener("click", () => {
         audio.currentTime = 0;
         if (audio.paused) togglePlayback();
       });
 
-      shareBtn.addEventListener("click", async () => {
+      volume.addEventListener("input", () => {
+        audio.volume = Number(volume.value);
+        audio.muted = audio.volume === 0;
+        updateVolumeIcon();
+      });
+
+      audio.volume = Number(volume.value);
+
+      function updateVolumeIcon() {
+        const volumeIcon = $("volumeIcon");
+
+        if (audio.muted || audio.volume === 0) {
+          volumeIcon.innerHTML = '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6m0-6-5 6"/>';
+        } else {
+          volumeIcon.innerHTML = '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 9a5 5 0 0 1 0 6"/><path d="M18 6a9 9 0 0 1 0 12"/>';
+        }
+      }
+
+      muteBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        updateVolumeIcon();
+      });
+
+      $("shareBtn").addEventListener("click", async () => {
         const shareData = {
-          title: "فریاد بی‌صدا — حجت حسینی",
+          title: "فریاد بی‌صدا - حجت حسینی",
           text: "شنیدن آهنگ فریاد بی‌صدا از حجت حسینی",
-          url: window.location.href
+          url: window.location.href.split("#")[0] + "#music"
         };
 
         try {
           if (navigator.share) {
             await navigator.share(shareData);
           } else if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(window.location.href);
-            status.textContent = "لینک سایت کپی شد";
+            await navigator.clipboard.writeText(shareData.url);
+            playerStatus.textContent = "لینک سایت کپی شد";
           } else {
-            status.textContent = "آدرس سایت را از نوار مرورگر کپی کن";
+            playerStatus.textContent = "برای اشتراک‌گذاری، آدرس سایت را از نوار مرورگر کپی کن";
           }
         } catch (error) {
           if (error.name !== "AbortError") {
-            status.textContent = "اشتراک‌گذاری انجام نشد";
+            playerStatus.textContent = "اشتراک‌گذاری در این دستگاه در دسترس نیست";
           }
+        }
+      });
+
+      // Dynamic music visualizer
+      let visualWidth = 0;
+      let visualHeight = 0;
+      let bars = [];
+
+      function resizeVisualizer() {
+        const rect = visualizerCanvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        visualWidth = rect.width;
+        visualHeight = rect.height;
+        visualizerCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
+        visualizerCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
+
+        vctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const count = Math.max(24, Math.floor(rect.width / 5));
+        bars = Array.from({ length: count }, () => ({
+          value: Math.random() * .08,
+          phase: Math.random() * Math.PI * 2
+        }));
+      }
+
+      function drawVisualizer() {
+        animationId = requestAnimationFrame(drawVisualizer);
+
+        if (!visualWidth || !visualHeight) return;
+
+        vctx.clearRect(0, 0, visualWidth, visualHeight);
+
+        const playing = !audio.paused && !audio.ended;
+        const gap = 3;
+        const barWidth = Math.max(1, (visualWidth - gap * (bars.length - 1)) / bars.length);
+        const centerY = visualHeight / 2;
+        const now = performance.now() / 1000;
+
+        if (analyser && frequencyData && playing) {
+          try {
+            analyser.getByteFrequencyData(frequencyData);
+          } catch (_) {}
+        }
+
+        for (let i = 0; i < bars.length; i++) {
+          let level;
+
+          if (analyser && frequencyData && playing) {
+            const index = Math.floor((i / bars.length) * frequencyData.length * .8);
+            level = frequencyData[index] / 255;
+            level = Math.pow(level, .8);
+          } else {
+            const waveOne = Math.sin(now * 2.4 + bars[i].phase);
+            const waveTwo = Math.sin(now * 1.2 + i * .19);
+            const waveThree = Math.cos(now * 3.1 - i * .09);
+            const movement = (waveOne * .22 + waveTwo * .18 + waveThree * .12 + .35);
+            level = playing ? Math.max(.08, movement) : Math.max(.025, movement * .18);
+          }
+
+          const target = Math.max(.035, Math.min(1, level));
+          bars[i].value += (target - bars[i].value) * (playing ? .3 : .06);
+
+          const h = Math.max(3, bars[i].value * visualHeight * .88);
+          const x = i * (barWidth + gap);
+          const y = centerY - h / 2;
+
+          const gradient = vctx.createLinearGradient(0, y, 0, y + h);
+          gradient.addColorStop(0, "#6cddff");
+          gradient.addColorStop(.5, "#628bff");
+          gradient.addColorStop(1, "#4156d6");
+
+          vctx.fillStyle = gradient;
+          vctx.globalAlpha = playing ? .95 : .48;
+          vctx.beginPath();
+
+          const radius = Math.min(barWidth / 2, 2);
+          vctx.roundRect(x, y, barWidth, h, radius);
+          vctx.fill();
+        }
+
+        vctx.globalAlpha = 1;
+      }
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(resizeVisualizer).observe(visualizerCanvas);
+      } else {
+        window.addEventListener("resize", resizeVisualizer);
+      }
+
+      resizeVisualizer();
+      drawVisualizer();
+
+      // Keyboard shortcut: Space toggles playback except in inputs/buttons.
+      document.addEventListener("keydown", (event) => {
+        const tag = document.activeElement?.tagName;
+        const editing = ["INPUT", "TEXTAREA", "BUTTON", "A"].includes(tag);
+
+        if (event.code === "Space" && !editing && !intro.classList.contains("hide") === false) {
+          event.preventDefault();
+          togglePlayback();
         }
       });
     })();

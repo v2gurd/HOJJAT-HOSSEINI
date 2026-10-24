@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -1031,6 +1030,43 @@
       </div>
     </section>
 
+    <!-- آهنگ قبلی: کجا؛ جدا از پخش‌کننده فریاد بی‌صدا -->
+    <section class="section container" id="koja-song">
+      <div class="section-heading">
+        <div class="overline">MUSIC ARCHIVE</div>
+        <h2>آثار قبلی</h2>
+        <p>مروری بر آهنگ‌های حجت حسینی</p>
+      </div>
+
+      <div class="music-card">
+        <div class="cover-wrap">
+          <img
+            src="./koja.jpg"
+            alt="کاور آهنگ کجا از حجت حسینی"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="track-info">
+          <div class="track-label">PREVIOUS RELEASE</div>
+          <h3>کجا</h3>
+          <div class="artist-name">حجت حسینی · Hojjat Hosseyni</div>
+          <p class="track-description">
+            برای شنیدن این اثر، پخش‌کننده را اجرا کن
+          </p>
+
+          <audio
+            controls
+            preload="metadata"
+            style="width:100%;margin-top:24px"
+            src="./koja.mp3"
+          >
+            مرورگر شما از پخش صوت پشتیبانی نمی‌کند
+          </audio>
+        </div>
+      </div>
+    </section>
+
     <div class="section-line"></div>
 
     <section class="section container" id="about">
@@ -1098,7 +1134,7 @@
   </footer>
 
   <script>
-    // پخش‌کننده موسیقی
+    // پخش‌کننده موسیقی فریاد بی‌صدا
     const audio = document.getElementById("audio");
     const playBtn = document.getElementById("playBtn");
     const muteBtn = document.getElementById("muteBtn");
